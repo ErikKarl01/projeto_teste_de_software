@@ -1,4 +1,4 @@
-#include<stdio.h>
+#include <stdio.h>
 
 void verifica_entrada(char entrata[], int tamanho, int *escolha){
     fgets(entrata, tamanho, stdin);

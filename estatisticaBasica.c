@@ -34,3 +34,17 @@ double moda(double lista[], int tamanho) {
 
     return moda_valor;
 }
+
+//Media Simples
+float media(float lista[],int tamanho) {
+    float media, soma = 0;
+    //int tamanho = sizeof(lista)/sizeof(lista[0]);
+
+    for (int i = 0; i < tamanho; i++){
+        soma += lista[i];
+    }
+
+    media = soma/tamanho;
+
+    return media;
+}

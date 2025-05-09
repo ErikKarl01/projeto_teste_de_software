@@ -48,3 +48,15 @@ float media(float lista[],int tamanho) {
 
     return media;
 }
+
+float calcula_variancia_amostral(float lista[], int tamanho) {
+    float media = 0;
+    media = media(lista, tamanho);
+    float soma_das_diferencas = 0; 
+     for(int i = 0; i < tamanho; i++) {
+         soma_das_diferencas += pow(lista[i] - media, 2);
+     }
+     float s2 = soma_das_diferencas/(tamanho - 1);
+     
+     return s2;
+ }

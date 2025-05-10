@@ -60,3 +60,27 @@ float calcula_variancia_amostral(float lista[], int tamanho) {
      
      return s2;
  }
+// Função auxiliar para ordenar a lista (Bubble Sort)
+void ordenar(float lista[], int tamanho) {
+    for (int i = 0; i < tamanho - 1; i++) {
+        for (int j = 0; j < tamanho - i - 1; j++) {
+            if (lista[j] > lista[j + 1]) {
+                float temp = lista[j];
+                lista[j] = lista[j + 1];
+                lista[j + 1] = temp;
+            }
+        }
+    }
+}
+// Função que calcula a mediana
+float calcular_mediana(float lista[], int tamanho) {
+    ordenar(lista, tamanho);
+
+    if (tamanho % 2 == 0) {
+        // Se for par, média dos dois do meio
+        return (lista[tamanho/2 - 1] + lista[tamanho/2]) / 2.0;
+    } else {
+        // Se for ímpar, valor do meio
+        return lista[tamanho/2];
+    }
+}

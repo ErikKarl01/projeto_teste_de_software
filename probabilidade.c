@@ -66,3 +66,12 @@ int main() {
 
     return 0;
 }
+
+// Função para calcular a probabilidade da união de dois eventos
+double calcular_probabilidade_uniao(double pA, double pB, double pA_E_B) {
+    if (pA < 0 || pA > 1 || pB < 0 || pB > 1 || pA_E_B < 0 || pA_E_B > 1) {
+        printf("Erro: as probabilidades devem estar entre 0 e 1.\n");
+        return -1.0;
+    }
+    return pA + pB - pA_E_B;
+}

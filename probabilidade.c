@@ -20,6 +20,40 @@ double calcular_probabilidade_composta_e(double p1, double p2) {
     return p1 * p2;
 }
 
+int calcula_fatorial(int n) {
+    int fatorial = 1;
+    for(int i = 2; i <= n; i++) {
+        fatorial *= i;
+    }
+    
+    return fatorial;
+
+}
+
+int qtd_combinacoes(int n, int k) {
+    if(n == k) {
+        return 1;
+    } if(n < k) {
+       printf("Erro: nao foi possivel realizar o calculo porque o primeiro parametro e menor do que o segundo");
+        return -1; 
+    }
+
+    int n_fatorial = calcula_fatorial(n);
+    int k_fatorial = calcula_fatorial(k);
+    int d_fatorial = calcula_fatorial(n - k);
+
+    return (n_fatorial)/((k_fatorial)*(d_fatorial));
+}
+
+
+double probabilidade_binomial(int favoraveis, int totais, int repeticoes, int sucessos) {
+    double p = calcular_probabilidade_evento_favoravel(favoraveis, totais);
+    int coeficiente_binomial = qtd_combinacoes(repeticoes, sucessos);
+
+    return coeficiente_binomial*pow(p, sucessos)*pow(1 - p, repeticoes - sucessos);
+
+}
+
 // Exemplo de uso
 int main() {
     double pA = calcular_probabilidade_evento_favoravel(3, 10);  // P(A) = 0.3

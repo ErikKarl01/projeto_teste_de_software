@@ -91,55 +91,42 @@ void estBasicaMenu(){
 void estInferencialMenu();
 void estProbabilisticaMenu();
 
-void opcao_inicial(int opcao_inicial){
-    switch (opcao_inicial)
-    {
-    case 1:
-        estBasicaMenu();
-        break;
-
-    case 2:
-        estInferencialMenu();
-        break;
-    
-    case 3:
-        estProbabilisticaMenu();
-        break;
-
-    default:
-        printf("Opção incorreta!");
-        break;
-    }
-}
-
-void menu_area(int *encerrar){
-    int escolha = 0;
-    char entrata[100];
-
-    printf("Digite 1 para estatística básica, 2 para inferencial, 3 para probabilidade"
-        "e 0 para sair");
-
-
-    if (verifica_entrada(entrata, sizeof(entrata), &escolha) && escolha != 0)
-    {
-        opcao_inicial(escolha);
-    }
-    if (escolha == 0)
-    {
-        *encerrar = 0;
-    }   
-}
-
 
 int main ()
 {
-    int encerrar = 1;
+    int escolha = 1;
 
     do
     {
-        menu_area(&encerrar);
-        
-    } while (encerrar);
+        char entrada[100];
+
+        printf("Digite 1 para estatística básica, 2 para inferencial, 3 para probabilidade"
+            "e 0 para sair");
+
+
+        if (verifica_entrada(entrada, sizeof(entrada), &escolha))
+        {
+            switch (escolha)
+            {
+            case 1:
+                estBasicaMenu();
+                break;
+
+            case 2:
+                estInferencialMenu();
+                break;
+            
+            case 3:
+                estProbabilisticaMenu();
+                break;
+
+            default:
+                printf("Opção incorreta!");
+                break;
+            }
+        } 
+
+    } while (escolha);
     
 
     return 0;

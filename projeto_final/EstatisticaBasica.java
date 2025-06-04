@@ -41,4 +41,14 @@ public class EstatisticaBasica {
             quickSort(array, inicio, posicao_pivo - 1);   
         }
     }
+
+    public double variancia_amostral() {
+        double soma_das_diferencas = 0;
+        double media = media_simples();
+        for(double num: this.entradas) {
+            soma_das_diferencas += Math.pow(media - num, 2);
+        }        
+
+        return soma_das_diferencas/(this.entradas.length - 1);
+    }
 }

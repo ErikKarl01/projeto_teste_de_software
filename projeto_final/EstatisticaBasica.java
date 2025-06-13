@@ -51,4 +51,26 @@ public class EstatisticaBasica {
 
         return soma_das_diferencas/(this.entradas.length - 1);
     }
+
+    public double calcularModa() {
+    double moda = entradas[0];
+    int maxFrequencia = 1;
+
+    for (int i = 0; i < entradas.length; i++) {
+        int frequenciaAtual = 1;
+
+        for (int j = i + 1; j < entradas.length; j++) {
+            if (entradas[i] == entradas[j]) {
+                frequenciaAtual++;
+            }
+        }
+
+        if (frequenciaAtual > maxFrequencia) {
+            maxFrequencia = frequenciaAtual;
+            moda = entradas[i];
+        }
+    }
+
+    return moda;
+}
 }

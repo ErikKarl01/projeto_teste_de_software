@@ -1,11 +1,11 @@
 package projeto_final;
 
-import javax.crypto.spec.DESedeKeySpec;
 import javax.swing.*;
-
-import java.awt.Component;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.Dimension;
-import java.awt.*;
+import java.awt.GridBagConstraints;
+
 
 
 public class MenuPrincipal extends JFrame{
@@ -16,46 +16,39 @@ public class MenuPrincipal extends JFrame{
 
         setLocationRelativeTo(null);
 
-        JPanel painel = new JPanel();
-        painel.setLayout(new BoxLayout(painel, BoxLayout.Y_AXIS));
+        JPanel painel = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
 
-        gbc.gridx = 0;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.archor = GridBagConstraints.CENTER;
-        gbc.insets = new Insets(10, 10, 10, 10);
+        JButton[] botao = {
+            new JButton("Estatística Básica"),
+            new JButton("Estatística Inferencial"),
+            new JButton("Probabilidade")
+        };
 
+        for (int i = 0; i < botao.length; i++) {
+            gbc.gridx = 0;
+            gbc.gridy = i;
+            gbc.fill = GridBagConstraints.HORIZONTAL;
+            gbc.insets = new Insets(10, 10, 10, 10);
+            botao[i].setPreferredSize(new Dimension(200, 50)); // Define o tamanho preferido do botão
 
-        JButton btnEstBasica = new JButton("Estatística Básica");
-        btnEstBasica.setAlignmentX(Component.CENTER_ALIGNMENT);
-        btnEstBasica.setMaximumSize(new Dimension(200, 50));
-        btnEstBasica.addActionListener(e -> {
-            TelaEstBasica telaEstBasica = new TelaEstBasica();
-            telaEstBasica.setVisible(true);
-            dispose();
-        });
+            String texto = botao[i].getText();
+            botao[i].addActionListener(e -> {
+                if (texto.equals("Estatística Básica")) {
+                    TelaEstBasica telaEstBasica = new TelaEstBasica();
+                    telaEstBasica.setVisible(true);
+                } else if (texto.equals("Estatística Inferencial")) {
+                    TelaEstInferencial telaEstInferencial = new TelaEstInferencial();
+                    telaEstInferencial.setVisible(true);
+                } else if (texto.equals("Probabilidade")) {
+                    TelaProbabilidade telaProbabilidade = new TelaProbabilidade();
+                    telaProbabilidade.setVisible(true);
+                }
+                dispose();
+            });
 
-        JButton btnEstInferencial = new JButton("Estatística Inferencial");
-        btnEstInferencial.setAlignmentX(Component.CENTER_ALIGNMENT);
-        btnEstInferencial.setMaximumSize(new Dimension(200, 50));
-        btnEstInferencial.addActionListener(e -> {
-            TelaEstInferencial telaEstInferencial = new TelaEstInferencial();
-            telaEstInferencial.setVisible(true);
-            dispose();
-        });
-
-        JButton btnProbabilidade = new JButton("Estatística Básica");
-        btnProbabilidade.setMaximumSize(new Dimension(200, 50));
-        btnProbabilidade.setAlignmentX(Component.CENTER_ALIGNMENT);
-        btnProbabilidade.addActionListener(e -> {
-            TelaProbabilidade telaProbabilidade = new TelaProbabilidade();
-            telaProbabilidade.setVisible(true);
-            dispose();
-        });
-
-        painel.add(btnEstBasica);
-        painel.add(btnEstInferencial);
-        painel.add(btnProbabilidade);
-
+            painel.add(botao[i], gbc);
+        }
         add(painel);
     }
 

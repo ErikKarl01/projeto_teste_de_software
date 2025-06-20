@@ -1,9 +1,11 @@
 package projeto_final;
 
-import java.awt.Component;
 import java.awt.Dimension;
-
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import javax.swing.*;
+import java.awt.Insets;
+
 
 public class TelaProbabilidade extends JFrame{
     public TelaProbabilidade(){
@@ -11,39 +13,44 @@ public class TelaProbabilidade extends JFrame{
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        JPanel panel = new JPanel();
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        JPanel panel = new JPanel(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
 
-        JButton btnProbNormal = new JButton("Distribuição Normal");
-        btnProbNormal.setAlignmentX(Component.CENTER_ALIGNMENT);
-        btnProbNormal.setMaximumSize(new Dimension(100, 50));
-        btnProbNormal.addActionListener(e -> {
-            TelaProbNormal telaProbNormal = new TelaProbNormal();
-            telaProbNormal.setVisible(true);
-            dispose();
-        });
 
-        JButton btnProbBinomial = new JButton("Distribuição Binomial");
-        btnProbBinomial.setAlignmentX(Component.CENTER_ALIGNMENT);
-        btnProbBinomial.setMaximumSize(new Dimension(100, 50));
-        btnProbBinomial.addActionListener(e -> {
-            TelaProbBinomial telaProbBinomial = new TelaProbBinomial();
-            telaProbBinomial.setVisible(true);
-            dispose();
-        });
+        JButton[] botao = {
+            new JButton("Distribuição Normal"),
+            new JButton("Distribuição Binomial"),
+            new JButton("Probabilidade Simples"),
+            new JButton("Probabilidade Condicional")
+        };
 
-        JButton btnProbSimples = new JButton("Probabilidade Simples");
-        btnProbSimples.setAlignmentX(Component.CENTER_ALIGNMENT);
-        btnProbSimples.setMaximumSize(new Dimension(100, 50));
-        btnProbSimples.addActionListener(e -> {
-            TelaProbSimples telaProbSimples = new TelaProbSimples();
-            telaProbSimples.setVisible(true);
-            dispose();
-        });
+        for (int i = 0; i < botao.length; i++) {
+            gbc.gridx = 0; // Coluna do botão 
+            gbc.fill = GridBagConstraints.HORIZONTAL; // Preenche horizontalmente
+            gbc.gridy = i; // Define a linha do botão
+            gbc.insets = new Insets(10, 10, 10, 10); // Espaçamento entre os botões
+            botao[i].setPreferredSize(new Dimension(200, 50)); // Define o tamanho preferido do botão
 
-        JButton btnProbCondicional = new JButton("Probabilidade Condicional");
-        1qw
-
+            /*String texto = botao[i].getText();
+            botao[i].addActionListener(e -> {
+                if (texto.equals("Distribuição Normal")) {
+                    //TelaProbNormal telaProbNormal = new TelaProbNormal();
+                    //telaProbNormal.setVisible(true);
+                } else if (texto.equals("Distribuição Binomial")) {
+                    //TelaProbBinomial telaProbBinomial = new TelaProbBinomial();
+                    //telaProbBinomial.setVisible(true);
+                } else if (texto.equals("Probabilidade Simples")) {
+                    //TelaProbSimples telaProbSimples = new TelaProbSimples();
+                    //telaProbSimples.setVisible(true);
+                } else if (texto.equals("Probabilidade Condicional")) {
+                    //TelaProbCondicional telaProbCondicional = new TelaProbCondicional();
+                    //telaProbCondicional.setVisible(true); 
+                }
+                dispose();
+            });*/
+            panel.add(botao[i], gbc);
+        }
+        add(panel);
         setLocationRelativeTo(null);
     }
 }

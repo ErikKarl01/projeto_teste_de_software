@@ -1,16 +1,15 @@
-package projeto_final;
+package codigos;
 
 public class EstatisticaBasica {
-    double[] entradas;
 
-    public double media_simples(){
+    public static double media_simples(double[] entradas) {
         double soma = 0;
 
-        for(double num: this.entradas){
+        for(double num: entradas){
             soma += num;
         }
 
-        return soma/this.entradas.length;
+        return soma/entradas.length;
     }
 
     public int ordenacaoParcial(double[] array, int inicio, int fim){
@@ -42,21 +41,21 @@ public class EstatisticaBasica {
         }
     }
 
-    public double variancia_amostral() {
+    public static double variancia_amostral(double[] entradas) {
         double soma_das_diferencas = 0;
-        double media = media_simples();
-        for(double num: this.entradas) {
+        double media = media_simples(entradas);
+        for(double num: entradas) {
             soma_das_diferencas += Math.pow(media - num, 2);
         }        
 
-        return soma_das_diferencas/(this.entradas.length - 1);
+        return soma_das_diferencas/(entradas.length - 1);
     }
 
-    public double calcularModa() {
-    double moda = entradas[0];
-    int maxFrequencia = 1;
+    public static double calcularModa(double[] entradas) {
+        double moda = entradas[0];
+        int maxFrequencia = 1;
 
-    for (int i = 0; i < entradas.length; i++) {
+        for (int i = 0; i < entradas.length; i++) {
         int frequenciaAtual = 1;
 
         for (int j = i + 1; j < entradas.length; j++) {

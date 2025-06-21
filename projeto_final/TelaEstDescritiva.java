@@ -5,7 +5,7 @@ import javax.swing.*;
 
 
 public class TelaEstDescritiva extends JFrame {
-    private double[] numeros;
+    private EstatisticaBasica entradas;
     
     public TelaEstDescritiva(String dados) {
         setTitle("Tela de Estatística Descritiva");
@@ -13,8 +13,9 @@ public class TelaEstDescritiva extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
+
         String[] partes = dados.split(" ");
-        numeros = new double[partes.length];
+        double[] numeros = new double[partes.length];
 
         if (numeros.length == 0) {
             JOptionPane.showMessageDialog(this, "Nenhum número foi fornecido.", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -43,7 +44,7 @@ public class TelaEstDescritiva extends JFrame {
         }
         }
 
-        
+        entradas = new EstatisticaBasica(numeros);
 
 
         JPanel panel = new JPanel();
@@ -54,6 +55,8 @@ public class TelaEstDescritiva extends JFrame {
             new JButton("Média"),
             new JButton("Variância"),
             new JButton("Moda"),
+            new JButton("Desvio Padrão"),
+            new JButton("Mediana"),
             new JButton("Voltar")
         };    
 
@@ -89,14 +92,20 @@ public class TelaEstDescritiva extends JFrame {
                     telaEstBasica.setVisible(true);
                     dispose();
                 } else if (botao.getText().equals("Média")) {
-                    double media = EstatisticaBasica.media_simples(numeros);
+                    double media = entradas.media_simples();
                     resultado.setText(String.valueOf(media));
                 } else if (botao.getText().equals("Variância")) {
-                    double variancia = EstatisticaBasica.calculaVarianciaAmostral(numeros);
+                    double variancia = entradas.calculaVarianciaAmostral();
                     resultado.setText(String.format("%.2f", variancia));
                 } else if (botao.getText().equals("Moda")) {
-                    double moda = EstatisticaBasica.calcularModa(numeros);
+                    double moda = entradas.calcularModa();
                     resultado.setText(String.valueOf(moda));
+                } else if (botao.getText().equals("Desvio Padrão")) {
+                    double desvioPadrao = entradas.calculaDesvioPadrão();
+                    resultado.setText(String.format("%.2f", desvioPadrao));
+                } else if (botao.getText().equals("Mediana")) {
+                    double mediana = entradas.calculaMediana();
+                    resultado.setText(String.format("%.2f", mediana));
                 }
                 resultado.setVisible(true);
                 panel.revalidate();

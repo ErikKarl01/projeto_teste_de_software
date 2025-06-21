@@ -47,7 +47,8 @@ public class TelaEstDescritiva extends JFrame {
 
 
         JPanel panel = new JPanel();
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));    
+        panel.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();    
 
         JButton[] opcoes = {
             new JButton("Média"),
@@ -58,12 +59,30 @@ public class TelaEstDescritiva extends JFrame {
 
         JTextField resultado = new JTextField(10);
         resultado.setEditable(false);
-        resultado.setVisible(false);
+        //resultado.setVisible(false);
         JLabel labelResultado = new JLabel("Resultado:");
-        
+
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridwidth = 2;
+        gbc.insets = new Insets(10, 10, 5, 10);
+        gbc.anchor = GridBagConstraints.WEST;
+        panel.add(labelResultado, gbc);
+
+        gbc.gridy = 1;
+        gbc.insets = new Insets(0, 10, 15, 10);
+        panel.add(resultado, gbc);
+
+        gbc.gridwidth = 2;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(5, 10, 5, 10);
+        int linha = 2; // Linha inicial para os botões
+
         for (JButton botao : opcoes) {
+            gbc.gridy = linha++;
+            panel.add(botao, gbc);
+
             botao.setPreferredSize(new Dimension(200, 50));
-            botao.setAlignmentX(Component.CENTER_ALIGNMENT);
             botao.addActionListener(e -> {
                 if (botao.getText().equals("Voltar")) {
                     TelaEstBasica telaEstBasica = new TelaEstBasica();
@@ -85,15 +104,10 @@ public class TelaEstDescritiva extends JFrame {
             });
         }
 
-        panel.add(Box.createVerticalStrut(20)); // Espaço vertical
-        panel.add(labelResultado);
-        panel.add(resultado);
-        panel.add(Box.createVerticalStrut(20)); // Espaço vertical
-        for (JButton botao : opcoes) {
-            panel.add(botao);
-            panel.add(Box.createVerticalStrut(10)); // Espaço entre os botões
-        }
+        
         add(panel);
+        pack();
+        setLocationRelativeTo(null);
     }
 
 }

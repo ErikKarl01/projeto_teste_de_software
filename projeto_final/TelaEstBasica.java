@@ -1,6 +1,5 @@
 package projeto_final;
 
-
 import java.awt.*;
 import javax.swing.*;
 
@@ -11,10 +10,9 @@ public class TelaEstBasica extends JFrame{
         setSize(400, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        JPanel painelInterno = new JPanel();
-        painelInterno.setLayout(new BoxLayout(painelInterno, BoxLayout.Y_AXIS));
-
-        painelInterno.add(Box.createVerticalGlue());
+        JPanel painel = new JPanel();
+        painel.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
 
         JButton[] botao = {
             new JButton("Voltar"),
@@ -23,45 +21,52 @@ public class TelaEstBasica extends JFrame{
             new JButton("Calcular estatísticas")
         };
 
-        JTextField campoValor = new JTextField(10);
+        JTextField campoValor = new JTextField(15);
         JLabel labelValor = new JLabel("Digite os valores entre espaços:");
 
-        for (JButton jButton : botao) {
-            jButton.addActionListener(e -> {
-                if (jButton.getText().equals("Voltar")) {
+        // Adiciona o label
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.gridwidth = 2;
+        gbc.insets = new Insets(10, 10, 5, 10);
+        gbc.anchor = GridBagConstraints.WEST;
+        painel.add(labelValor, gbc);
+
+        // Adiciona o campo de texto
+        gbc.gridy = 1;
+        gbc.insets = new Insets(0, 10, 15, 10);
+        painel.add(campoValor, gbc);
+
+        // Adiciona os botões
+        gbc.gridwidth = 2;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new Insets(5, 10, 5, 10);
+        int linha = 2; // Linha inicial para os botões
+        for (JButton btn : botao) {
+            gbc.gridy = linha++;
+            painel.add(btn, gbc);
+
+            btn.setPreferredSize(new Dimension(200, 40));
+            btn.addActionListener(e -> {
+                if (btn.getText().equals("Voltar")) {
                     MenuPrincipal menu = new MenuPrincipal();
                     menu.setVisible(true);
                     dispose();
-                }else if(jButton.getText().equals("Calcular estatísticas")){
+                } else if (btn.getText().equals("Calcular estatísticas")) {
                     String dados = campoValor.getText();
                     TelaEstDescritiva telaEstDescritiva = new TelaEstDescritiva(dados);
                     telaEstDescritiva.setVisible(true);
                     dispose();
-                }else if(jButton.getText().equals("Refazer")){
+                } else if (btn.getText().equals("Refazer")) {
                     campoValor.setText("");
-                }else if(jButton.getText().equals("Sair")){
+                } else if (btn.getText().equals("Sair")) {
                     System.exit(0);
-                }});
+                }
+            });
         }
 
-        painelInterno.add(labelValor);
-        painelInterno.add(campoValor);
-        painelInterno.add(Box.createVerticalStrut(20)); // Espaço entre o campo de texto e os botões
-        painelInterno.add(Box.createVerticalGlue()); // Espaço flexível para centralizar os botões
-
-
-        for (JButton btn : botao) {
-            btn.setPreferredSize(new Dimension(100, 50));
-            btn.setAlignmentX(Component.CENTER_ALIGNMENT);
-            painelInterno.add(btn);
-            painelInterno.add(Box.createVerticalStrut(10)); // Espaço entre os botões
-        }
-        painelInterno.add(Box.createVerticalGlue()); // Espaço flexível para centralizar os botões
-        
-        JPanel painelExterno = new JPanel(new GridBagLayout());
-        painelExterno.add(painelInterno);
-
-        add(painelExterno);
+        add(painel);
+        pack();
         setLocationRelativeTo(null);
     }
 }

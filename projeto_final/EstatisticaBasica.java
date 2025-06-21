@@ -4,122 +4,152 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class EstatisticaBasica {
+    double[] entrada;
 
-    public static double media_simples(double[] entradas) {
+    public EstatisticaBasica(double[] entrada) {
+        this.entrada = entrada;
+    }
+
+    public double media_simples() {
         double soma = 0;
 
-        for(double num: entradas){
+        for(double num: this.entrada){
             soma += num;
         }
 
-        return soma/entradas.length;
+        return soma / this.entrada.length;
     }
 
-    public static int ordenacaoParcial(double[] array, int inicio, int fim){
-        double pivo = array[fim];
-        int posicao_i = inicio - 1; 
+    public int ordenacaoParcial(int inicio, int fim){
+        double pivo = this.entrada[fim];
+        int posicao_i = inicio - 1;
 
         for (int index = 0; index < fim; index++) {
-            if (array[index] < pivo) {
+            if (this.entrada[index] < pivo) {
                 posicao_i++;
 
-                double temporario = array[index];
-                array[index] = array[posicao_i];
-                array[posicao_i] = temporario;
+                double temporario = this.entrada[index];
+                this.entrada[index] = this.entrada[posicao_i];
+                this.entrada[posicao_i] = temporario;
             }
         }
 
-        double temporario = array[fim];
-        array[fim] = array[posicao_i + 1];
-        array[posicao_i + 1] = temporario;
+        double temporario = this.entrada[fim];
+        this.entrada[fim] = this.entrada[posicao_i + 1];
+        this.entrada[posicao_i + 1] = temporario;
 
         return posicao_i + 1;
     }
 
-    public static void quickSort(double[] array, int inicio, int fim){
-        if (inicio<fim) {
-            int posicao_pivo = ordenacaoParcial(array, inicio, fim);
-            quickSort(array, posicao_pivo + 1, fim);
-            quickSort(array, inicio, posicao_pivo - 1);   
+    public void quickSort(int inicio, int fim){
+        if (inicio < fim) {
+            int posicao_pivo = ordenacaoParcial(inicio, fim);
+            quickSort(posicao_pivo + 1, fim);
+            quickSort(inicio, posicao_pivo - 1);
         }
     }
 
-    public static double calculaMediana(double[] entradas) {
-        if(entradas == null){
+    public double calculaMediana() {
+        if(this.entrada == null){
             System.err.println("Sem valores na lista!");
             return 0;
         }
 
-        if (entradas.length%2 != 0) {
-            int index = entradas.length/2;
-            return entradas[index];
+        if (this.entrada.length % 2 != 0) {
+            int index = this.entrada.length / 2;
+            return this.entrada[index];
         }else{
-            int index_sup = entradas.length/2;
-            int index_inf = entradas.length/2 - 1;
-            return (entradas[index_sup] + entradas[index_inf])/2;
+            int index_sup = this.entrada.length / 2;
+            int index_inf = this.entrada.length / 2 - 1;
+            return (this.entrada[index_sup] + this.entrada[index_inf]) / 2;
         }
     }
 
-    public static double calculaVarianciaAmostral(double[] entradas) {
+    public double calculaVarianciaAmostral() {
         double soma_das_diferencas = 0;
-        double media = media_simples(entradas);
-        for(double num: entradas) {
+        double media = media_simples();
+        for(double num: this.entrada) {
             soma_das_diferencas += Math.pow(media - num, 2);
         }        
 
-        return soma_das_diferencas/(entradas.length - 1);
+        return soma_das_diferencas / (this.entrada.length - 1);
     }
 
-    public static double calculaDesvioPadrão(double[] entradas) {
-        return Math.sqrt(calculaVarianciaAmostral(entradas));
+    public double calculaDesvioPadrão() {
+        return Math.sqrt(calculaVarianciaAmostral());
     }
 
-    public static double calculaValorMin(double [] entradas) {
-        return entradas[0];
+    public double calculaValorMin() {
+        return this.entrada[0];
     }
 
-    public static double calculaValorMax(double [] entradas) {
-        return entradas[entradas.length];
+    public double calculaValorMax() {
+        return this.entrada[this.entrada.length - 1];
     }
 
-    public static Map<Double, Integer> calculaFrequenciaSimples(double[] entradas) {
-        Map<Double, Integer> mapa = new HashMap<>();
+    public Map<Double, Double> calculaFrequenciaSimples() {
+        Map<Double, Double> mapa = new HashMap<>();
 
-        for (int index = 0; index < entradas.length; index++) {
-            double chave = entradas[index];
-            mapa.put(chave, mapa.getOrDefault(chave, 0)+1); 
+        for (int index = 0; index < this.entrada.length; index++) {
+            double chave = this.entrada[index];
+            mapa.put(chave, mapa.getOrDefault(chave, 0.0) + 1.0);
         }
 
         return mapa;
     }
 
-    public static Map<Double, Integer> calculaFrequenciaAcumulada(double[] entradas) {
-        Map<Double, Integer> mapa = calculaFrequenciaSimples(entradas);
-        int soma = 0;
+    public Map<Double, Double> calculaFrequenciaAcumulada() {
+        Map<Double, Double> mapa = calculaFrequenciaSimples();
+        double soma = 0;
 
-        for (Map.Entry<Double, Integer> entry : mapa.entrySet()) {
+        for (Map.Entry<Double, Double> entry : mapa.entrySet()) {
             soma += entry.getValue();
             mapa.put(entry.getKey(), soma);
         }
         return mapa;
     }
 
-    public static double calcularModa(double[] entradas) {
-        double moda = entradas[0];
+    public Map<Double, Double> calculaFrequenciaRelativa() {
+        Map<Double, Double> mapa = calculaFrequenciaSimples();
+        int totalEntradas = this.entrada.length;
+
+        for (Map.Entry<Double, Double> entry : mapa.entrySet()) {
+            double frequencia = entry.getValue();
+            mapa.put(entry.getKey(), frequencia / totalEntradas);
+        }
+
+        return mapa;
+    }
+
+    public Map<Double, Double> calculaFrequenciaRelativaAcumulada() {
+        Map<Double, Double> mapa = calculaFrequenciaSimples();
+        double soma = 0;
+        int totalEntradas = this.entrada.length;
+
+        for (Map.Entry<Double, Double> entry : mapa.entrySet()) {
+            soma += entry.getValue() / totalEntradas;
+            mapa.put(entry.getKey(), soma);
+        }
+
+        return mapa;
+    }
+
+    public double calcularModa() {
+        double moda = this.entrada[0];
         int maxFrequencia = 1;
 
-        for (int i = 0; i < entradas.length; i++) {
+        for (int i = 0; i < this.entrada.length; i++) {
             int frequenciaAtual = 1;
 
-            for (int j = i + 1; j < entradas.length; j++) {
-                if (entradas[i] == entradas[j]) {
+            for (int j = i + 1; j < this.entrada.length; j++) {
+                if (this.entrada[i] == this.entrada[j]) {
                     frequenciaAtual++;
                 }
             }
 
             if (frequenciaAtual > maxFrequencia) {
                 maxFrequencia = frequenciaAtual;
-                moda = entradas[i];
+                moda = this.entrada[i];
             }
         }
 

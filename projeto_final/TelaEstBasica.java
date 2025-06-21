@@ -3,7 +3,6 @@ package projeto_final;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.util.List;
-
 import javax.swing.*;
 
 public class TelaEstBasica extends JFrame{

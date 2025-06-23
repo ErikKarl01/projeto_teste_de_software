@@ -3,7 +3,6 @@ package projeto_final;
 import java.awt.*;
 import javax.swing.*;
 
-
 public class TelaEstDescritiva extends JFrame {
     private EstatisticaBasica entradas;
     
@@ -30,26 +29,27 @@ public class TelaEstDescritiva extends JFrame {
         
         for (int i = 0; i < partes.length; i++) {
             try {
-            numeros[i] = Double.parseDouble(partes[i].trim());
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Erro ao converter os dados. Certifique-se de que são números válidos.", "Erro", JOptionPane.ERROR_MESSAGE);
-            setVisible(false);
-            SwingUtilities.invokeLater(() -> {
-                TelaEstBasica telaEstBasica = new TelaEstBasica();
-                telaEstBasica.setVisible(true);
-                this.dispose();
-            });
-
-
+                numeros[i] = Double.parseDouble(partes[i]);
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "Erro ao converter os números: " + partes[i], "Erro", JOptionPane.ERROR_MESSAGE);
+                setVisible(false);
+                SwingUtilities.invokeLater(() -> {
+                    TelaEstBasica telaEstBasica = new TelaEstBasica();
+                    telaEstBasica.setVisible(true);
+                    this.dispose();
+                });
+                return;
+            }
         }
-        }
-
-        entradas = new EstatisticaBasica(numeros);
-
+        
+        entradas = new EstatisticaBasica();
+        entradas.processarEntradas(numeros);
+        entradas.quickSort(0, numeros.length - 1);
 
         JPanel panel = new JPanel();
         panel.setLayout(new GridBagLayout());
-        GridBagConstraints gbc = new GridBagConstraints();    
+        GridBagConstraints gbc = new GridBagConstraints(); 
+        
 
         JButton[] opcoes = {
             new JButton("Média"),
@@ -59,6 +59,7 @@ public class TelaEstDescritiva extends JFrame {
             new JButton("Mediana"),
             new JButton("Voltar")
         };    
+
 
         JTextField resultado = new JTextField(10);
         resultado.setEditable(false);

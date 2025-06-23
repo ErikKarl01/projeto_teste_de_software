@@ -5,25 +5,8 @@ import java.util.*;
 public class EstatisticaBasica {
     double[] entrada;
 
-    public void processarEntradas(){
-        Scanner scanner = new Scanner(System.in);
-        ArrayList<Double> lista = new ArrayList<>();
-        while (scanner.hasNext()) {
-            if (scanner.hasNextDouble()) {
-                double valor = scanner.nextDouble();
-                lista.add(valor);
-            } else {
-                String input = scanner.next();
-                if(input.equalsIgnoreCase("fim")) break;
-                else System.out.println("Entrada inválida. Digite um número ou 'fim' para encerrar.");
-            }
-        }
-
-        this.entrada = new double[lista.size()];
-        for (int i = 0; i < lista.size(); i++) {
-            entrada[i] = lista.get(i);
-        }
-        scanner.close();
+    public void processarEntradas(double[] entrada) {
+        this.entrada = entrada; 
     }
 
     public EstatisticaBasica(){}
@@ -176,7 +159,6 @@ public class EstatisticaBasica {
 
     public static void main(String[] args){
         EstatisticaBasica estatisticaBasica = new EstatisticaBasica();
-        estatisticaBasica.processarEntradas();
         estatisticaBasica.quickSort(0, estatisticaBasica.entrada.length - 1);
         System.out.println("Entrada: " + Arrays.toString(estatisticaBasica.entrada));
         System.out.println("Média Simples: " + estatisticaBasica.media_simples());

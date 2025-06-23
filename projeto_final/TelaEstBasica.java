@@ -7,7 +7,7 @@ public class TelaEstBasica extends JFrame{
 
     public TelaEstBasica(){
         setTitle("Estatística Básica");
-        setSize(400, 300);
+        setSize(1000, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JPanel painel = new JPanel();
@@ -20,6 +20,9 @@ public class TelaEstBasica extends JFrame{
             new JButton("Sair"),
             new JButton("Calcular estatísticas")
         };
+
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.weightx = 1.0;
 
         JTextField campoValor = new JTextField(15);
         JLabel labelValor = new JLabel("Digite os valores entre espaços:");
@@ -38,9 +41,7 @@ public class TelaEstBasica extends JFrame{
         painel.add(campoValor, gbc);
 
         // Adiciona os botões
-        gbc.gridwidth = 2;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.insets = new Insets(5, 10, 5, 10);
+        gbc.gridwidth = 2; 
         int linha = 2; // Linha inicial para os botões
         for (JButton btn : botao) {
             gbc.gridy = linha++;
@@ -66,7 +67,6 @@ public class TelaEstBasica extends JFrame{
         }
 
         add(painel);
-        pack();
         setLocationRelativeTo(null);
     }
 }

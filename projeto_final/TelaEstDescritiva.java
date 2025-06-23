@@ -8,7 +8,7 @@ public class TelaEstDescritiva extends JFrame {
     
     public TelaEstDescritiva(String dados) {
         setTitle("Tela de Estatística Descritiva");
-        setSize(400, 300);
+        setSize(600, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 

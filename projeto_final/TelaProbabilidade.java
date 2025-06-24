@@ -21,7 +21,8 @@ public class TelaProbabilidade extends JFrame{
             new JButton("Distribuição Normal"),
             new JButton("Distribuição Binomial"),
             new JButton("Probabilidade Simples"),
-            new JButton("Probabilidade Condicional")
+            new JButton("Probabilidade Condicional"),
+            new JButton("Voltar")
         };
 
         for (int i = 0; i < botao.length; i++) {
@@ -31,7 +32,7 @@ public class TelaProbabilidade extends JFrame{
             gbc.insets = new Insets(10, 10, 10, 10); // Espaçamento entre os botões
             botao[i].setPreferredSize(new Dimension(200, 50)); // Define o tamanho preferido do botão
 
-            /*String texto = botao[i].getText();
+            String texto = botao[i].getText();
             botao[i].addActionListener(e -> {
                 if (texto.equals("Distribuição Normal")) {
                     //TelaProbNormal telaProbNormal = new TelaProbNormal();
@@ -45,9 +46,12 @@ public class TelaProbabilidade extends JFrame{
                 } else if (texto.equals("Probabilidade Condicional")) {
                     //TelaProbCondicional telaProbCondicional = new TelaProbCondicional();
                     //telaProbCondicional.setVisible(true); 
+                } else if (texto.equals("Voltar")) {
+                    MenuPrincipal menuPrincipal = new MenuPrincipal();
+                    menuPrincipal.setVisible(true);
                 }
                 dispose();
-            });*/
+            });
             panel.add(botao[i], gbc);
         }
         add(panel);

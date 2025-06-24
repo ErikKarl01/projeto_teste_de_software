@@ -23,7 +23,8 @@ public class TelaEstInferencial extends JFrame {
             new JButton("Distribuição Normal"),
             new JButton("Distribuição Binomial"),
             new JButton("Probabilidade Simples"),
-            new JButton("Probabilidade Condicional")
+            new JButton("Probabilidade Condicional"),
+            new JButton("Voltar")
         };
 
         for (int i = 0; i < botao.length; i++) {
@@ -47,7 +48,10 @@ public class TelaEstInferencial extends JFrame {
                 } else if(texString.equals("Probabilidade Condicional")){
                     //TelaProbCondicional telaProbCondicional = new TelaprobCondicional();
                     //telaProbCondicional.setVisible(true);
-                }
+                } else if(texString.equals("Voltar")){
+                    MenuPrincipal menuPrincipal = new MenuPrincipal();
+                    menuPrincipal.setVisible(true);
+                } 
 
                 dispose();
             });

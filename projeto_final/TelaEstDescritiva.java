@@ -57,6 +57,12 @@ public class TelaEstDescritiva extends JFrame {
             new JButton("Moda"),
             new JButton("Desvio Padrão"),
             new JButton("Mediana"),
+            new JButton("Valor Máximo"),
+            new JButton("Valor Mínimo"),
+            new JButton("Frequência Simples"),
+            new JButton("Frequência Acumulada"),
+            new JButton("Frequência Relativa"),
+            new JButton("Frequência Relativa Acumulada"),
             new JButton("Voltar")
         };    
 
@@ -107,6 +113,20 @@ public class TelaEstDescritiva extends JFrame {
                 } else if (botao.getText().equals("Mediana")) {
                     double mediana = entradas.calculaMediana();
                     resultado.setText(String.format("%.2f", mediana));
+                } else if (botao.getText().equals("Valor Máximo")) {
+                    double valorMaximo = entradas.calculaValorMax();
+                    resultado.setText(String.valueOf(valorMaximo));
+                } else if (botao.getText().equals("Valor Mínimo")) {
+                    double valorMinimo = entradas.calculaValorMin();
+                    resultado.setText(String.valueOf(valorMinimo));
+                } else if (botao.getText().equals("Frequência Simples")) {
+                    resultado.setText(entradas.calculaFrequenciaSimples().toString());
+                } else if (botao.getText().equals("Frequência Acumulada")) {
+                    resultado.setText(entradas.calculaFrequenciaAcumulada().toString());
+                } else if (botao.getText().equals("Frequência Relativa")) {
+                    resultado.setText(entradas.calculaFrequenciaRelativa().toString());
+                } else if (botao.getText().equals("Frequência Relativa Acumulada")) {
+                    resultado.setText(entradas.calculaFrequenciaRelativaAcumulada().toString());
                 }
                 resultado.setVisible(true);
                 panel.revalidate();

@@ -33,7 +33,28 @@ public class TelaEstInferencial extends JFrame {
             gbc.insets = new Insets(10, 10, 10, 10); // Espaçamento entre os botões
             botao[i].setPreferredSize(new Dimension(200, 50)); // Define o tamanho preferido do botão
 
+            String texString = botao[i].getText();
+            botao[i].addActionListener(e -> {
+                if(texString.equals("Distribuição Normal")){
+                    //TelaDistNormal telaDistNormal = new TelaDistNormal();
+                    //telaDistNormal.setVisible(true);
+                } else if(texString.equals("Distribuição Binomial")){
+                    //TelaDistBinomial telaDistBinomial = new TelaDistBinomial();
+                    //telaDistBinomial.setVisible(true);
+                } else if(texString.equals("Probabilidade Simples")){
+                    //TelaProbSimples telaProbSimples = new TelaprobSimples();
+                    //telaProbSimples.setVisible(true);
+                } else if(texString.equals("Probabilidade Condicional")){
+                    //TelaProbCondicional telaProbCondicional = new TelaprobCondicional();
+                    //telaProbCondicional.setVisible(true);
+                }
+
+                dispose();
+            });
+
             panel.add(botao[i], gbc);
         }
+
+        add(panel);
     }
 }

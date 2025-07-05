@@ -1,5 +1,6 @@
 package projeto_final;
 
+import org.apache.commons.math3.special.Erf;
 
 public class Probabilidade {
 
@@ -67,4 +68,16 @@ public class Probabilidade {
         double normal = Math.pow(e, expoente)/(desvioPadrao * Math.sqrt(2 * pi));
         return normal;
     }
-}
+
+    public static double calculaAcumuladaNormal(double x, double desvioPadrao, double media) {
+        if (desvioPadrao <= 0) {
+            System.out.println("Erro: desvio padrão deve ser maior que zero");
+            return -1;
+        }
+
+        double z = (x - media) / desvioPadrao;
+        return 0.5 * (1 + Erf.erf(z / Math.sqrt(2)));
+    }
+
+    }
+

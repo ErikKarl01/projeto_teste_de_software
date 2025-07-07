@@ -27,13 +27,13 @@ public class TelaProbSimples extends JFrame{
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        JTextField casosFavoraveisField = new JTextField("Casos favoráveis:");
+        JTextField casosFavoraveisField = new JTextField();
         painel.add(casosFavoraveisField, gbc);
 
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        JTextField totalField = new JTextField("Total:");
+        JTextField totalField = new JTextField();
         painel.add(totalField, gbc);
 
         gbc.gridx = 0;
@@ -51,8 +51,8 @@ public class TelaProbSimples extends JFrame{
             String texto = botao[i].getText();
             botao[i].addActionListener(e -> {
                 if(texto.equals("Calcular")){
-                    double total = -1;
-                    double casosFavoraveis = -1;
+                    Double total = null;
+                    Double casosFavoraveis = null;
                     try {
                         casosFavoraveis = Double.parseDouble(casosFavoraveisField.getText().trim());
                     } catch (NumberFormatException ex) {
@@ -64,7 +64,7 @@ public class TelaProbSimples extends JFrame{
                         saida.setText("Valor 2 inválido");
                     }
 
-                    if (casosFavoraveis != -1 && total != -1) {
+                    if (casosFavoraveis != null && total != null) {
                         if (casosFavoraveis < 0 || total <= 0) {
                             saida.setText("Erro: eventos favoráveis ≥ 0 e possíveis > 0");
                         } else {

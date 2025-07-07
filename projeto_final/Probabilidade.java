@@ -4,7 +4,7 @@ import org.apache.commons.math3.special.Erf;
 
 public class Probabilidade {
 
-    public double calcularProbabilidadeSimples(double eventosFavoraveis, double eventosPossiveis){
+    public static double calcularProbabilidadeSimples(double eventosFavoraveis, double eventosPossiveis){
         if(eventosFavoraveis < 0 || eventosPossiveis <= 0){
             System.out.println("Erro: eventos favoráveis devem ser >= 0 e eventos possíveis > 0");
             return -1;
@@ -13,7 +13,7 @@ public class Probabilidade {
         return eventosFavoraveis / eventosPossiveis;
     }
 
-    public double calcularProbabilidadeCondicional(double probabilidade_aeb, double probabilidade_b){
+    public static double calcularProbabilidadeCondicional(double probabilidade_aeb, double probabilidade_b){
         if (probabilidade_aeb < 0 || probabilidade_b <= 0) {
             System.out.println("Probabilidade do evento A deve ser maior ou igual a zero e do evento b, maior que zero");
             return 0;
@@ -49,7 +49,7 @@ public class Probabilidade {
         return (n_fatorial)/((k_fatorial)*(d_fatorial));
     }
 
-    public double calcularProbabilidadeBinomial(double probabilidade, int repeticoes, int sucessos){
+    public static double calcularProbabilidadeBinomial(double probabilidade, int repeticoes, int sucessos){
         if(probabilidade < 0 || probabilidade > 1){
             System.out.println("Erro: valor da probabilidade deve ser 0, 1 ou estar entre estes");
             return -1;
@@ -60,7 +60,7 @@ public class Probabilidade {
         return coeficiente_binomial*Math.pow(probabilidade, sucessos)*Math.pow(1 - probabilidade, repeticoes - sucessos);
     }
 
-    public double calcularProbabilidadeBinomial(double x, double desvioPadrao, double media){
+    public static double calcularProbabilidadeBinomial(double x, double desvioPadrao, double media){
         double pi = Math.PI;
         double e = Math.E;
 

@@ -41,8 +41,8 @@ public class TelaProbabilidade extends JFrame{
                     //TelaProbBinomial telaProbBinomial = new TelaProbBinomial();
                     //telaProbBinomial.setVisible(true);
                 } else if (texto.equals("Probabilidade Simples")) {
-                    //TelaProbSimples telaProbSimples = new TelaProbSimples();
-                    //telaProbSimples.setVisible(true);
+                    TelaProbSimples telaProbSimples = new TelaProbSimples();
+                    telaProbSimples.setVisible(true);
                 } else if (texto.equals("Probabilidade Condicional")) {
                     //TelaProbCondicional telaProbCondicional = new TelaProbCondicional();
                     //telaProbCondicional.setVisible(true); 

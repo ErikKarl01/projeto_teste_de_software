@@ -27,13 +27,13 @@ public class TelaProbSimples extends JFrame{
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        JTextField casosFavoraveisField = new JTextField("Casos favoráveis:");
+        JTextField casosFavoraveisField = new JTextField();
         painel.add(casosFavoraveisField, gbc);
 
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        JTextField totalField = new JTextField("Total:");
+        JTextField totalField = new JTextField();
         painel.add(totalField, gbc);
 
         gbc.gridx = 0;

@@ -58,8 +58,8 @@ public class TelaProbCondicional extends JFrame{
                 saida.setText("ERRO: valor 2 com caracteres");
             }
 
-            if (probAB != null || probB != null) {
-                if (probAB > 0 || probB >= 0) {
+            if (probAB != null && probB != null) {
+                if (probAB > 0 && probB >= 0) {
                     Double resultado = Probabilidade.calcularProbabilidadeCondicional(probAB, probB);
                     saida.setText("Resultado: " + resultado);
                 }else{

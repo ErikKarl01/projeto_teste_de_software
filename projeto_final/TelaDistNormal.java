@@ -1,4 +1,4 @@
-class TelaDistNormal extends JFrame{
+/*class TelaDistNormal extends JFrame{
     public TelaDistNormal(){
         setTitle("Tela de Distribuição Normal");
         setSize(1000, 300);
@@ -8,4 +8,4 @@ class TelaDistNormal extends JFrame{
         GridBagConstraints gbc = new GridBagConstraints();
 
     }
-}
+}*/

@@ -35,8 +35,8 @@ public class TelaProbabilidade extends JFrame{
             String texto = botao[i].getText();
             botao[i].addActionListener(e -> {
                 if (texto.equals("Distribuição Normal")) {
-                    //TelaProbNormal telaProbNormal = new TelaProbNormal();
-                    //telaProbNormal.setVisible(true);
+                    TelaProbNormal telaProbNormal = new TelaProbNormal();
+                    telaProbNormal.setVisible(true);
                 } else if (texto.equals("Distribuição Binomial")) {
                     //TelaProbBinomial telaProbBinomial = new TelaProbBinomial();
                     //telaProbBinomial.setVisible(true);

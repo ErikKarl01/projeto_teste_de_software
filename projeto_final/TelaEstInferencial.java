@@ -1,12 +1,12 @@
 package projeto_final;
 
-import javax.swing.JPanel;
-import javax.swing.JFrame;
-import javax.swing.JButton;
-import java.awt.GridBagLayout;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
 import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 public class TelaEstInferencial extends JFrame {
     public TelaEstInferencial(){
@@ -46,8 +46,8 @@ public class TelaEstInferencial extends JFrame {
                     //TelaProbSimples telaProbSimples = new TelaprobSimples();
                     //telaProbSimples.setVisible(true);
                 } else if(texString.equals("Probabilidade Condicional")){
-                    //TelaProbCondicional telaProbCondicional = new TelaprobCondicional();
-                    //telaProbCondicional.setVisible(true);
+                    TelaProbCondicional telaProbCondicional = new TelaProbCondicional();
+                    telaProbCondicional.setVisible(true);
                 } else if(texString.equals("Voltar")){
                     MenuPrincipal menuPrincipal = new MenuPrincipal();
                     menuPrincipal.setVisible(true);

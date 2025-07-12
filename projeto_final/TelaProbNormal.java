@@ -27,6 +27,7 @@ public class TelaProbNormal extends JFrame {
         JTextField desvioPadraoField = new JTextField(15);
         JTextField xField = new JTextField(15);
         JButton calcularButton = new JButton("Calcular");
+        JButton voltarButton = new JButton("Voltar");
 
         // Adicione os componentes ao painel com as restrições desejadas
         gbc.gridx = 0;
@@ -52,6 +53,10 @@ public class TelaProbNormal extends JFrame {
         gbc.gridwidth = 2;
         panel.add(calcularButton, gbc);
 
+        gbc.gridy = 4;
+        gbc.gridwidth = 3;
+        panel.add(voltarButton, gbc);
+
         calcularButton.addActionListener(e -> {
             try {
                 double media = Double.parseDouble(mediaField.getText());
@@ -66,6 +71,11 @@ public class TelaProbNormal extends JFrame {
             }
         });
 
+        voltarButton.addActionListener(e -> {
+            this.dispose(); // Fecha a janela atual
+            TelaProbabilidade telaProbabilidade = new TelaProbabilidade();
+            telaProbabilidade.setVisible(true); // Abre a tela de probabilidade
+        });
         add(panel);
     }
 

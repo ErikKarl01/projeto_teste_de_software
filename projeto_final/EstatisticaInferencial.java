@@ -10,8 +10,11 @@ public class EstatisticaInferencial {
             return new double[]{-1, -1};
         }
 
-        double erroPadrao = desvioPadrao / Math.sqrt(tamanhoAmostra);
-        double margemErro = z * erroPadrao;
+        double margemErro = calcularMargemErro(z, desvioPadrao, tamanhoAmostra);
+        if (margemErro < 0) {
+            System.out.println("Erro: cálculo da margem de erro falhou");
+            return new double[]{-1, -1};
+        }
 
         return new double[]{mediaAmostral - margemErro, mediaAmostral + margemErro};
     }

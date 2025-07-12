@@ -14,9 +14,9 @@ public class Probabilidade {
     }
 
     public static double calcularProbabilidadeCondicional(double probabilidade_aeb, double probabilidade_b){
-        if (probabilidade_aeb < 0 || probabilidade_b <= 0) {
-            System.out.println("Probabilidade do evento A deve ser maior ou igual a zero e do evento b, maior que zero");
-            return 0;
+        if (probabilidade_aeb > probabilidade_b) {
+            System.out.println("A probabilidade da interseção não pode ser maior que a probabilidade de B.");
+            return -1;
         }
         return probabilidade_aeb/probabilidade_b;
     }
@@ -60,7 +60,7 @@ public class Probabilidade {
         return coeficiente_binomial*Math.pow(probabilidade, sucessos)*Math.pow(1 - probabilidade, repeticoes - sucessos);
     }
 
-    public static double calcularProbabilidadeBinomial(double x, double desvioPadrao, double media){
+    public static double calcularDensidadeNormal(double x, double desvioPadrao, double media){
         double pi = Math.PI;
         double e = Math.E;
 

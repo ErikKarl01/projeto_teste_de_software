@@ -79,5 +79,5 @@ public class Probabilidade {
         return 0.5 * (1 + Erf.erf(z / Math.sqrt(2)));
     }
 
-    }
+}
 

@@ -41,32 +41,31 @@ public class TelaProbBinomial extends JFrame{
         gbc.fill = GridBagConstraints.HORIZONTAL;
         JButton calcularButton = new JButton();
         calcularButton.addActionListener(e -> {
-            Double varX = null;
-            Double desvioPadrao = null;
-            Double media = null;
+            Double probabilidade = null;
+            Integer repeticoes = null;
+            Integer sucessos = null;
 
             try {
-                varX = Double.parseDouble(variavelXField.getText().trim());
+                probabilidade = Double.parseDouble(variavelXField.getText().trim());
             } catch (NumberFormatException ex) {
                 saidaTextField.setText("ERRO: Valor não numérico detectado");
             }
             try {
-                desvioPadrao = Double.parseDouble(desvioPadraoField.getText().trim());
+                repeticoes = Integer.parseInt(desvioPadraoField.getText().trim());
             } catch (NumberFormatException ex) {
                 saidaTextField.setText("ERRO: Valor não numérico detectado");
             }
             try {
-                media = Double.parseDouble(mediaField.getText().trim());
+                sucessos = Integer.parseInt(mediaField.getText().trim());
             } catch (NumberFormatException ex) {
                 saidaTextField.setText("ERRO: Valor não numérico detectado");
             }
 
-            if (varX != null && media !=  null && desvioPadrao != null) {
-                if (desvioPadrao >= 0) {
-                    double resultado = Probabilidade.calcularProbabilidadeBinomial(varX, desvioPadrao, media);
-                    saidaTextField.setText("Resultado: " + resultado);
+            if (probabilidade != null && repeticoes !=  null && sucessos != null) {
+                if (probabilidade > 0 && probabilidade <= 1) {
+                    saidaTextField.setText("Resultado: " + Probabilidade.calcularProbabilidadeBinomial(probabilidade, repeticoes, sucessos));
                 }else{
-                    saidaTextField.setText("ERRO: Desvio padrão deve ser maior que zero.");
+                    saidaTextField.setText("Probabilidade deve estar entre 0 e 1");
                 }
             }
         });

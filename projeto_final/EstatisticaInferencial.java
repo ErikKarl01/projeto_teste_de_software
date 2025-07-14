@@ -4,7 +4,7 @@ package projeto_final;
 public class EstatisticaInferencial {
 
     // Intervalo de confiança (quando desvio padrão populacional é conhecido)
-    public double[] intervaloConfiancaMediaComDesvioPadrao(double mediaAmostral, double z, double desvioPadrao, int tamanhoAmostra) {
+    public static double[] intervaloConfiancaMediaComDesvioPadrao(double mediaAmostral, double z, double desvioPadrao, int tamanhoAmostra) {
         if (tamanhoAmostra <= 0 || desvioPadrao <= 0 || z <= 0) {
             System.out.println("Erro: parâmetros inválidos");
             return new double[]{-1, -1};
@@ -20,7 +20,7 @@ public class EstatisticaInferencial {
     }
 
     // Intervalo de confiança (quando desvio padrão populacional é desconhecido, usa t de Student)
-    public double[] intervaloConfiancaMediaSemDesvioPadrao(double mediaAmostral, double t, double desvioAmostral, int tamanhoAmostra) {
+    public static double[] intervaloConfiancaMediaSemDesvioPadrao(double mediaAmostral, double t, double desvioAmostral, int tamanhoAmostra) {
         if (tamanhoAmostra <= 1 || desvioAmostral <= 0 || t <= 0) {
             System.out.println("Erro: parâmetros inválidos");
             return new double[]{-1, -1};
@@ -33,7 +33,7 @@ public class EstatisticaInferencial {
     }
 
     // Teste Z (hipótese para média com desvio padrão conhecido)
-    public double testeZ(double mediaAmostral, double mediaHipotetica, double desvioPadrao, int tamanhoAmostra) {
+    public static double testeZ(double mediaAmostral, double mediaHipotetica, double desvioPadrao, int tamanhoAmostra) {
         if (tamanhoAmostra <= 0 || desvioPadrao <= 0) {
             System.out.println("Erro: parâmetros inválidos");
             return -1;
@@ -43,7 +43,7 @@ public class EstatisticaInferencial {
     }
 
     // Teste T (hipótese para média com desvio padrão amostral)
-    public double testeT(double mediaAmostral, double mediaHipotetica, double desvioAmostral, int tamanhoAmostra) {
+    public static double testeT(double mediaAmostral, double mediaHipotetica, double desvioAmostral, int tamanhoAmostra) {
         if (tamanhoAmostra <= 1 || desvioAmostral <= 0) {
             System.out.println("Erro: parâmetros inválidos");
             return -1;
@@ -53,7 +53,7 @@ public class EstatisticaInferencial {
     }
 
     // Margem de erro simples
-    public double calcularMargemErro(double z, double desvioPadrao, int tamanhoAmostra) {
+    public static double calcularMargemErro(double z, double desvioPadrao, int tamanhoAmostra) {
         if (tamanhoAmostra <= 0 || desvioPadrao <= 0) {
             System.out.println("Erro: parâmetros inválidos");
             return -1;
@@ -63,7 +63,7 @@ public class EstatisticaInferencial {
     }
 
     // Exemplo de uso (para testes)
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         EstatisticaInferencial est = new EstatisticaInferencial();
 
         double[] ic = est.intervaloConfiancaMediaComDesvioPadrao(50, 1.96, 10, 100);
@@ -77,5 +77,5 @@ public class EstatisticaInferencial {
 
         double margem = est.calcularMargemErro(1.96, 10, 100);
         System.out.println("Margem de erro: " + margem);
-    }
+    }*/
 }

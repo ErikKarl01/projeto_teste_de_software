@@ -38,8 +38,8 @@ public class TelaProbabilidade extends JFrame{
                     TelaProbNormal telaProbNormal = new TelaProbNormal();
                     telaProbNormal.setVisible(true);
                 } else if (texto.equals("Distribuição Binomial")) {
-                    //TelaProbBinomial telaProbBinomial = new TelaProbBinomial();
-                    //telaProbBinomial.setVisible(true);
+                    TelaProbBinomial telaProbBinomial = new TelaProbBinomial();
+                    telaProbBinomial.setVisible(true);
                 } else if (texto.equals("Probabilidade Simples")) {
                     TelaProbSimples telaProbSimples = new TelaProbSimples();
                     telaProbSimples.setVisible(true);

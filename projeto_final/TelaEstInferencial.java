@@ -37,17 +37,17 @@ public class TelaEstInferencial extends JFrame {
             String texString = botao[i].getText();
             botao[i].addActionListener(e -> {
                 if(texString.equals("Intervalo de confiança da média de uma população")){
-                    //TelaDistNormal telaDistNormal = new TelaDistNormal();
-                    //telaDistNormal.setVisible(true);
+                    TelaIntervaloDeConfiança telaIntervaloDeConfiança = new TelaIntervaloDeConfiança();
+                    telaIntervaloDeConfiança.setVisible(true);
                 } else if(texString.equals("Valor z de uma população")){
-                    //TelaDistBinomial telaDistBinomial = new TelaDistBinomial();
-                    //telaDistBinomial.setVisible(true);
+                    TelaValorCriticoZ telaValorCriticoZ = new TelaValorCriticoZ();
+                    telaValorCriticoZ.setVisible(true);
                 } else if(texString.equals("Teste T de uma amostra")){
-                    //TelaProbSimples telaProbSimples = new TelaprobSimples();
-                    //telaProbSimples.setVisible(true);
+                    TelaTesteTAmostra telaTesteTAmostra = new TelaTesteTAmostra();  
+                    telaTesteTAmostra.setVisible(true);
                 } else if(texString.equals("Teste de proporção simples")){
-                    //TelaProbCondicional telaProbCondicional = new TelaProbCondicional();
-                    //telaProbCondicional.setVisible(true);
+                    TelaProbCondicional telaProbCondicional = new TelaProbCondicional();
+                    telaProbCondicional.setVisible(true);
                 } else if(texString.equals("Voltar")){
                     MenuPrincipal menuPrincipal = new MenuPrincipal();
                     menuPrincipal.setVisible(true);

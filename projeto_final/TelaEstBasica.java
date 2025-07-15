@@ -4,7 +4,6 @@ import java.awt.*;
 import javax.swing.*;
 
 public class TelaEstBasica extends JFrame{
-    private float[] dados;
     public TelaEstBasica(){
         setTitle("Estatística Básica");
         setSize(1000, 300);
@@ -56,7 +55,6 @@ public class TelaEstBasica extends JFrame{
                     dispose();
                 } else if (btn.getText().equals("Calcular estatísticas")) {
                     String dados = campoValor.getText();
-                    //VerificaValor(dados);
                     TelaEstDescritiva telaEstDescritiva = new TelaEstDescritiva(dados);
                     telaEstDescritiva.setVisible(true);
                     dispose();
@@ -70,4 +68,6 @@ public class TelaEstBasica extends JFrame{
 
         add(painel);
     }
+
+
 }

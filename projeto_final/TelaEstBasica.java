@@ -4,6 +4,8 @@ import java.awt.*;
 import javax.swing.*;
 
 public class TelaEstBasica extends JFrame{
+    private static JTextField campoValor;
+    
     public TelaEstBasica(){
         setTitle("Estatística Básica");
         setSize(1000, 300);
@@ -24,7 +26,7 @@ public class TelaEstBasica extends JFrame{
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.weightx = 1.0;
 
-        JTextField campoValor = new JTextField(15);
+        campoValor = new JTextField(15);
         JLabel labelValor = new JLabel("Digite os valores entre espaços:");
 
         // Adiciona o label
@@ -55,9 +57,11 @@ public class TelaEstBasica extends JFrame{
                     dispose();
                 } else if (btn.getText().equals("Calcular estatísticas")) {
                     String dados = campoValor.getText();
-                    TelaEstDescritiva telaEstDescritiva = new TelaEstDescritiva(dados);
-                    telaEstDescritiva.setVisible(true);
-                    dispose();
+                    if(verificaDados(dados)) {
+                        TelaEstDescritiva telaEstDescritiva = new TelaEstDescritiva(dados);
+                        telaEstDescritiva.setVisible(true);
+                        dispose();
+                    }
                 } else if (btn.getText().equals("Refazer")) {
                     campoValor.setText("");
                 } else if (btn.getText().equals("Sair")) {
@@ -69,5 +73,40 @@ public class TelaEstBasica extends JFrame{
         add(painel);
     }
 
+    private static boolean verificaDados(String dados) {
+        if (dados == null || dados.trim().isEmpty()) {
+            campoValor.setText("Erro: Digite pelo menos um valor.");
+            return false;
+        }
+
+        String[] valores = dados.trim().split("\\s+");
+        for (String valor : valores) {
+            try {
+                double valorDouble = Double.parseDouble(valor);
+                if(valorDouble < -1000000000 || valorDouble > 1000000000) {
+                    campoValor.setText("Erro: valor está fora do intervalo permitido (-1.000.000.000 a 1.000.000.000)");
+                    return false;
+                }
+            } catch (NumberFormatException e) {
+                // verifica se o valor atual foi uma letra ou símbolo
+                if (!valor.matches("-?\\d+([\\.,]\\d+)?")) {
+                    campoValor.setText("Erro: não é permitido letras, símbolos ou operações matemáticas. Digite apenas números");
+                    return false;
+                }
+                
+                if (valor.contains(",")) {
+                    campoValor.setText("Erro: " + valor + " não é um parâmetro válido. Use ponto (.) para separar os números decimais.");
+                    return false;
+                }
+                
+                
+                
+                
+
+            }
+        }
+
+        return true;
+    }
 
 }

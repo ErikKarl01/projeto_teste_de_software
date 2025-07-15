@@ -42,6 +42,19 @@ public class EstatisticaInferencial {
         return (mediaAmostral - mediaHipotetica) / (desvioPadrao / Math.sqrt(tamanhoAmostra));
     }
 
+    // Teste Z para proporção simples
+    public static double testeProporcaoSimples(double proporcaoAmostral, double proporcaoHipotetica, int tamanhoAmostra) {
+        if (tamanhoAmostra <= 0 || proporcaoHipotetica <= 0 || proporcaoHipotetica >= 1) {
+            System.out.println("Erro: parâmetros inválidos");
+            return -1;
+        }
+
+        double erroPadrao = Math.sqrt((proporcaoHipotetica * (1 - proporcaoHipotetica)) / tamanhoAmostra);
+        double z = (proporcaoAmostral - proporcaoHipotetica) / erroPadrao;
+
+        return z;
+    }
+
     // Teste T (hipótese para média com desvio padrão amostral)
     public static double testeT(double mediaAmostral, double mediaHipotetica, double desvioAmostral, int tamanhoAmostra) {
         if (tamanhoAmostra <= 1 || desvioAmostral <= 0) {

@@ -20,10 +20,10 @@ public class TelaEstInferencial extends JFrame {
 
 
         JButton[] botao = {
-            new JButton("Distribuição Normal"),
-            new JButton("Distribuição Binomial"),
-            new JButton("Probabilidade Simples"),
-            new JButton("Probabilidade Condicional"),
+            new JButton("Intervalo de confiança da média de uma população"),
+            new JButton("Valor z de uma população"),
+            new JButton("Teste T de uma amostra"),
+            new JButton("Teste de proporção simples"),
             new JButton("Voltar")
         };
 
@@ -36,18 +36,18 @@ public class TelaEstInferencial extends JFrame {
 
             String texString = botao[i].getText();
             botao[i].addActionListener(e -> {
-                if(texString.equals("Distribuição Normal")){
+                if(texString.equals("Intervalo de confiança da média de uma população")){
                     //TelaDistNormal telaDistNormal = new TelaDistNormal();
                     //telaDistNormal.setVisible(true);
-                } else if(texString.equals("Distribuição Binomial")){
+                } else if(texString.equals("Valor z de uma população")){
                     //TelaDistBinomial telaDistBinomial = new TelaDistBinomial();
                     //telaDistBinomial.setVisible(true);
-                } else if(texString.equals("Probabilidade Simples")){
+                } else if(texString.equals("Teste T de uma amostra")){
                     //TelaProbSimples telaProbSimples = new TelaprobSimples();
                     //telaProbSimples.setVisible(true);
-                } else if(texString.equals("Probabilidade Condicional")){
-                    TelaProbCondicional telaProbCondicional = new TelaProbCondicional();
-                    telaProbCondicional.setVisible(true);
+                } else if(texString.equals("Teste de proporção simples")){
+                    //TelaProbCondicional telaProbCondicional = new TelaProbCondicional();
+                    //telaProbCondicional.setVisible(true);
                 } else if(texString.equals("Voltar")){
                     MenuPrincipal menuPrincipal = new MenuPrincipal();
                     menuPrincipal.setVisible(true);

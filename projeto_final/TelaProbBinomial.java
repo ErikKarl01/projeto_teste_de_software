@@ -8,6 +8,7 @@ public class TelaProbBinomial extends JFrame{
         setTitle("Probabilidade binomial");
         setSize(1000, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
 
         JPanel painel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();

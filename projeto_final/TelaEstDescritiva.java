@@ -13,33 +13,12 @@ public class TelaEstDescritiva extends JFrame {
         setLocationRelativeTo(null);
 
 
-        String[] partes = dados.split(" ");
+        String[] partes = dados.trim().split("\\s+");
         double[] numeros = new double[partes.length];
-
-        if (numeros.length == 0) {
-            JOptionPane.showMessageDialog(this, "Nenhum número foi fornecido.", "Erro", JOptionPane.ERROR_MESSAGE);
-            setVisible(false);
-            SwingUtilities.invokeLater(() -> {
-                TelaEstBasica telaEstBasica = new TelaEstBasica();
-                telaEstBasica.setVisible(true);
-                this.dispose();
-            });
-        }
 
         
         for (int i = 0; i < partes.length; i++) {
-            try {
-                numeros[i] = Double.parseDouble(partes[i]);
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(this, "Erro ao converter os números: " + partes[i], "Erro", JOptionPane.ERROR_MESSAGE);
-                setVisible(false);
-                SwingUtilities.invokeLater(() -> {
-                    TelaEstBasica telaEstBasica = new TelaEstBasica();
-                    telaEstBasica.setVisible(true);
-                    this.dispose();
-                });
-                return;
-            }
+            numeros[i] = Double.parseDouble(partes[i]);
         }
         
         entradas = new EstatisticaBasica();
@@ -80,6 +59,7 @@ public class TelaEstDescritiva extends JFrame {
         panel.add(labelResultado, gbc);
 
         gbc.gridy = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new Insets(0, 10, 15, 10);
         panel.add(resultado, gbc);
 

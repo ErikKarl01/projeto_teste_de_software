@@ -5,15 +5,17 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import javax.swing.*;
 import java.awt.Insets;
+import java.awt.Color;
 
 
 public class TelaProbabilidade extends JFrame{
     public TelaProbabilidade(){
         setTitle("Probabilidade");
-        setSize(400, 300);
+        setSize(1000, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JPanel panel = new JPanel(new GridBagLayout());
+        panel.setBackground(new Color(220, 240, 235));
         GridBagConstraints gbc = new GridBagConstraints();
 
 

@@ -14,10 +14,6 @@ public class Probabilidade {
     }
 
     public static double calcularProbabilidadeCondicional(double probabilidade_aeb, double probabilidade_b){
-        if (probabilidade_aeb > probabilidade_b) {
-            System.out.println("A probabilidade da interseção não pode ser maior que a probabilidade de B.");
-            return -1;
-        }
         return probabilidade_aeb/probabilidade_b;
     }
 

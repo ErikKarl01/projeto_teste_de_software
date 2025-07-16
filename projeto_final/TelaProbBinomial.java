@@ -22,7 +22,7 @@ public class TelaProbBinomial extends JFrame{
         gbc.gridy = 0;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new java.awt.Insets(0, 0, 0, 10);
-        JLabel textomediLabel = new JLabel("<html>Insira valor de média: </html>");
+        JLabel textomediLabel = new JLabel("<html>Insira valor de probabilidade: </html>");
         textomediLabel.setFont(new Font("Arial", Font.BOLD, 16));
         painel.add(textomediLabel, gbc);
 
@@ -40,7 +40,7 @@ public class TelaProbBinomial extends JFrame{
         gbc.gridy = 1;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new java.awt.Insets(0, 0, 0, 10);
-        JLabel textoRepeticoesJLabel = new JLabel("<html>Insira valor de média: </html>");
+        JLabel textoRepeticoesJLabel = new JLabel("<html>Insira valor de repetições: </html>");
         textoRepeticoesJLabel.setFont(new Font("Arial", Font.BOLD, 16));
         painel.add(textoRepeticoesJLabel, gbc);
 
@@ -58,7 +58,7 @@ public class TelaProbBinomial extends JFrame{
         gbc.gridy = 2;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new java.awt.Insets(0, 0, 0, 10);
-        JLabel textoSucessosJLabel = new JLabel("<html>Insira valor de média: </html>");
+        JLabel textoSucessosJLabel = new JLabel("<html>Insira valor de sucessos: </html>");
         textoSucessosJLabel.setFont(new Font("Arial", Font.BOLD, 16));
         painel.add(textoSucessosJLabel, gbc);
 
@@ -122,7 +122,7 @@ public class TelaProbBinomial extends JFrame{
                 } else if (sucessos > repeticoes) {
                     saidaTextField.setText("<html>Sucessos não podem ser maiores que repetições</html>");
                 } else if (sucessos > 100 || repeticoes > 100) {
-                    saidaTextField.setText("<html>Valores muito grandes detectados entradas repetições, máximo 100</html>");
+                    saidaTextField.setText("<html>Valores muito grandes detectados em repetições ou sucessos, máximo 100</html>");
                 } else {
                     saidaTextField.setText("<html>Resultado: " + Probabilidade.calcularProbabilidadeBinomial(probabilidade, repeticoes, sucessos) + "</html>");
                 }

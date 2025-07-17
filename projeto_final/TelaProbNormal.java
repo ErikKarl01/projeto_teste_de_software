@@ -2,17 +2,10 @@ package projeto_final;
 import java.awt.*;
 import javax.swing.*;
 
-/* Apenas um teste de integração com bibliotecas externas, 
-não significa a interface final 
 
-Importante: Ao compilar e executar os seguintes comandos, certifique-se de que esteja no diretório raiz do
-projeto, a saber, projeto_teste_de_software.
-Para compilar o código, execute:
-javac -cp ".;lib/commons-math3-3.6.1.jar" .\projeto_final\Probabilidade.java .\projeto_final\TelaProbNormal.java 
-java -cp ".;lib/commons-math3-3.6.1.jar" projeto_final.TelaProbNormal 
-*/
 public class TelaProbNormal extends JFrame {
     private static JTextField[] textFields;
+    private static JLabel saidaText;
 
     public TelaProbNormal() {
         setTitle("Cálculo de Probabilidade Normal");
@@ -22,13 +15,14 @@ public class TelaProbNormal extends JFrame {
         
         JPanel panel = new JPanel();
         panel.setLayout(new GridBagLayout());
+        panel.setBackground(new Color(220, 240, 235));
         GridBagConstraints gbc = new GridBagConstraints();
 
         textFields = new JTextField[]{
-            new JTextField(15),
-            new JTextField(15),
-            new JTextField(15),
-            new JTextField(15)
+            new JTextField(15), //TextField da média
+            new JTextField(15), //TextField do desvio padrão
+            new JTextField(15), //TextField do valor x
+            new JTextField(15) //TextField do resultado
         };
         textFields[3].setEditable(false);
         JButton[] buttons = {
@@ -36,42 +30,76 @@ public class TelaProbNormal extends JFrame {
             new JButton("Voltar")
         };
 
-        // Adicione os componentes ao painel com as restrições desejadas
+        
         gbc.gridx = 0;
         gbc.gridy = 0;
-        panel.add(new JLabel("Média:"), gbc);
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new java.awt.Insets(10, 0, 0, 10);
+        JLabel textoMed = new JLabel("<html>Insira o valor da média: </html>"); //JLabel de média
+        textoMed.setFont(new Font("Arial", Font.BOLD, 16));
+        panel.add(textoMed, gbc);
         gbc.gridx = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new java.awt.Insets(10, 0, 0, 0);
+        textFields[0].setPreferredSize(new Dimension(100, 30)); 
         panel.add(textFields[0], gbc);
 
         gbc.gridx = 0;
         gbc.gridy = 1;
-        panel.add(new JLabel("Desvio Padrão:"), gbc);
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new java.awt.Insets(10, 0, 0, 10);
+        JLabel textoDP = new JLabel("<html>Insira o valor do desvio padrão: </html>"); //JLabel do desvio padrão
+        textoDP.setFont(new Font("Arial", Font.BOLD, 16));
+        panel.add(textoDP, gbc);
         gbc.gridx = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new java.awt.Insets(10, 0, 0, 0);
+        textFields[1].setPreferredSize(new Dimension(100, 30));
         panel.add(textFields[1], gbc);
 
         gbc.gridx = 0;
         gbc.gridy = 2;
-        panel.add(new JLabel("X:"), gbc);
+        gbc.insets = new java.awt.Insets(10, 0, 0, 10);
+        JLabel textoX = new JLabel("<html>Insira o valor de X: </html>"); //JLabel de x
+        textoX.setFont(new Font("Arial", Font.BOLD, 16));
+        panel.add(textoX, gbc);
         gbc.gridx = 1;
+        gbc.insets = new java.awt.Insets(10, 0, 0, 0);
+        textFields[2].setPreferredSize(new Dimension(100, 30));
         panel.add(textFields[2], gbc);
 
         gbc.gridx = 0;
         gbc.gridy = 3;
-        panel.add(new JLabel("Resultado:"), gbc);
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new java.awt.Insets(10, 0, 10, 10);
+        JLabel resultado = new JLabel("<html>Resultado: </html>"); //JLabel do resultado
+        resultado.setFont(new Font("Arial", Font.BOLD, 16));
+        panel.add(resultado, gbc);
         gbc.gridx = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new java.awt.Insets(10, 0, 0, 0);
+        textFields[3].setPreferredSize(new Dimension(100, 30));
         panel.add(textFields[3], gbc);
 
+        //JLabel para exibição de mensagens de erro
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        saidaText = new JLabel();
+        saidaText.setPreferredSize(new Dimension(250, 80));
+        saidaText.setFont(new Font("Arial", Font.BOLD, 16));
+        panel.add(saidaText, gbc);
+
         for (int i = 0; i < buttons.length; i++) {
-            gbc.gridx = 1;
+            gbc.gridx = 0;
             gbc.gridy = 5 + i; 
             gbc.fill = GridBagConstraints.HORIZONTAL;
-            gbc.insets = new Insets(10, 10, 10, 10); // Espaçamento entre os botões
-            buttons[i].setPreferredSize(new Dimension(200, 50));
+            gbc.insets = new Insets(10, 0, 0, 0); // Espaçamento entre os botões
+            buttons[i].setPreferredSize(new Dimension(100, 30));
             panel.add(buttons[i], gbc);
             String buttonText = buttons[i].getText();
             buttons[i].addActionListener(e -> {
                 if (buttonText.equals("Calcular")) {
-                    //Verifica se os campos estão preenchidos corretamente
+                    
                     if (!validateFields()) {
                         return;
                     }
@@ -82,8 +110,8 @@ public class TelaProbNormal extends JFrame {
                     double x = Double.parseDouble(textFields[2].getText().trim());
 
                     // Calcula a probabilidade normal
-                    double resultado = Probabilidade.calculaAcumuladaNormal(x, desvio, media);
-                    textFields[3].setText(String.valueOf(resultado));
+                    double probabilidade = Probabilidade.calculaAcumuladaNormal(x, desvio, media);
+                    textFields[3].setText(String.valueOf(probabilidade));
                 } else if (buttonText.equals("Voltar")) {
                     TelaProbabilidade telaProbabilidade = new TelaProbabilidade();
                     telaProbabilidade.setVisible(true);
@@ -106,32 +134,39 @@ public class TelaProbNormal extends JFrame {
 
        for(int i = 0; i < campos.length; i++) {
             if (campos[i].isEmpty()) {
-                textFields[i].setText("ERRO: Campo vazio");
+                saidaText.setText("<html>ERRO: Campo vazio detectado</html>");
+                saidaText.setForeground(Color.RED);
+                textFields[i].setText("");
                 return false;
             }
             try {
                 double valor = Double.parseDouble(campos[i]);
                 if (i == 1 && valor <= 0) {
-                    textFields[i].setText("ERRO: desvio padrão deve ser positivo");
+                    saidaText.setText("<html>ERRO: Desvio padrão deve ser positivo</html>");
+                    saidaText.setForeground(Color.RED);
+                    textFields[i].setText("");
                     return false;
                 }
 
             } catch (Exception e) {
                 if(campos[i].contains(",")) {
-                    textFields[i].setText("ERRO: vírgula não é permitida");
-                    
+                    saidaText.setText("<html>ERRO: Digite os números separados por (.)</html>");
+                    saidaText.setForeground(Color.RED);
+                    textFields[i].setText("");
                     return false;
                 }
 
-                if(campos[i].contains("\\s+")) {
-                    textFields[i].setText("ERRO: espaços em branco não são permitidos");
-                    
+                if(campos[i].matches(".*\\s+.*")) {
+                    saidaText.setText("<html>ERRO: espaços em branco não são permitidos</html>");
+                    saidaText.setForeground(Color.RED);
+                    textFields[i].setText("");
                     return false;
                 }
                 
                 if(!campos[i].matches("-?\\d+(\\.\\d+)?")) {
-                    textFields[i].setText("ERRO: letras, símbolos ou operações são inválidos");
-                    
+                    saidaText.setText("<html>ERRO: letras, símbolos ou operações são inválidos</html>");
+                    saidaText.setForeground(Color.RED);
+                    textFields[i].setText("");
                     return false;
                 }
 

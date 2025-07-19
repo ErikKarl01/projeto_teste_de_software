@@ -1,10 +1,10 @@
 package projeto_final;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import javax.swing.*;
-import java.awt.Color;
 
 public class TelaProbBinomial extends JFrame{
     public TelaProbBinomial(){

@@ -113,8 +113,8 @@ public class TelaProbNormal extends JFrame {
                     double probabilidade = Probabilidade.calculaAcumuladaNormal(x, desvio, media);
                     textFields[3].setText(String.valueOf(probabilidade));
                 } else if (buttonText.equals("Voltar")) {
-                    TelaProbabilidade telaProbabilidade = new TelaProbabilidade();
-                    telaProbabilidade.setVisible(true);
+                    TelaDistNormal telaDistNormal = new TelaDistNormal();
+                    telaDistNormal.setVisible(true);
                     dispose(); 
                 }
             });

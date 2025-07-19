@@ -1,11 +1,11 @@
 package projeto_final;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import javax.swing.*;
 import java.awt.Insets;
-import java.awt.Color;
+import javax.swing.*;
 
 
 public class TelaProbabilidade extends JFrame{
@@ -37,8 +37,8 @@ public class TelaProbabilidade extends JFrame{
             String texto = botao[i].getText();
             botao[i].addActionListener(e -> {
                 if (texto.equals("Distribuição Normal")) {
-                    TelaProbNormal telaProbNormal = new TelaProbNormal();
-                    telaProbNormal.setVisible(true);
+                    TelaDistNormal telaDistNormal = new TelaDistNormal();
+                    telaDistNormal.setVisible(true);
                 } else if (texto.equals("Distribuição Binomial")) {
                     TelaProbBinomial telaProbBinomial = new TelaProbBinomial();
                     telaProbBinomial.setVisible(true);

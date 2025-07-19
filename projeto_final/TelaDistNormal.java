@@ -38,8 +38,8 @@ public class TelaDistNormal extends JFrame {
                 telaProbNormal.setVisible(true);
             }
             else if(texto.equals("P(a < X < b)")) {
-                //TelaPNDoisPontos telaProbDoisPontos = new TelaPNDoisPontos();
-                //telaProbDoisPontos = new TelaPNDoisPontos();
+                TelaPNIntervalo telaProbDoisPontos = new TelaPNIntervalo();
+                telaProbDoisPontos.setVisible(true);
             }
             else if(texto.equals("f(x)")) {
                 /*TelaDensidadeNormal telaDensidade = new TelaDensidadeNormal();

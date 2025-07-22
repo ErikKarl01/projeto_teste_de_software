@@ -22,9 +22,8 @@ public class TelaProbNormal extends JFrame {
             new JTextField(15), //TextField da média
             new JTextField(15), //TextField do desvio padrão
             new JTextField(15), //TextField do valor x
-            new JTextField(15) //TextField do resultado
         };
-        textFields[3].setEditable(false);
+
         JButton[] buttons = {
             new JButton("Calcular"),
             new JButton("Voltar")
@@ -68,22 +67,10 @@ public class TelaProbNormal extends JFrame {
         textFields[2].setPreferredSize(new Dimension(100, 30));
         panel.add(textFields[2], gbc);
 
+
+        //JLabel para exibição de mensagens de erro e resultados
         gbc.gridx = 0;
         gbc.gridy = 3;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.insets = new java.awt.Insets(10, 0, 10, 10);
-        JLabel resultado = new JLabel("<html>Resultado: </html>"); //JLabel do resultado
-        resultado.setFont(new Font("Arial", Font.BOLD, 16));
-        panel.add(resultado, gbc);
-        gbc.gridx = 1;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.insets = new java.awt.Insets(10, 0, 0, 0);
-        textFields[3].setPreferredSize(new Dimension(100, 30));
-        panel.add(textFields[3], gbc);
-
-        //JLabel para exibição de mensagens de erro
-        gbc.gridx = 0;
-        gbc.gridy = 4;
         saidaText = new JLabel();
         saidaText.setPreferredSize(new Dimension(250, 80));
         saidaText.setFont(new Font("Arial", Font.BOLD, 16));
@@ -111,7 +98,9 @@ public class TelaProbNormal extends JFrame {
 
                     // Calcula a probabilidade normal
                     double probabilidade = Probabilidade.calculaAcumuladaNormal(x, desvio, media);
-                    textFields[3].setText(String.valueOf(probabilidade));
+                    String prob = String.format("%.4f", probabilidade * 100) + "%";
+                    saidaText.setText("<html>Probabilidade acumulada: " + prob + "</html>");
+                    saidaText.setForeground(Color.BLACK);
                 } else if (buttonText.equals("Voltar")) {
                     TelaDistNormal telaDistNormal = new TelaDistNormal();
                     telaDistNormal.setVisible(true);
@@ -175,7 +164,7 @@ public class TelaProbNormal extends JFrame {
         }
 
         return true;
-    }   
-    }
+    } 
+}
 
     

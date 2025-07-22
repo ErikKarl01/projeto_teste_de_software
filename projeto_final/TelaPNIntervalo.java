@@ -21,9 +21,7 @@ public class TelaPNIntervalo extends JFrame {
             new JTextField(15), //TextField do desvio padrão
             new JTextField(15), //TextField do valor a
             new JTextField(15), //TextField do valor b
-            new JTextField(15) //TextField do resultado
         };
-        textFields[4].setEditable(false);
         JButton[] buttons = {
             new JButton("Calcular"),
             new JButton("Voltar")
@@ -80,22 +78,10 @@ public class TelaPNIntervalo extends JFrame {
         textFields[3].setPreferredSize(new Dimension(100, 30));
         panel.add(textFields[3], gbc);
 
+
+        //JLabel para exibição de mensagens de erro e resultados
         gbc.gridx = 0;
         gbc.gridy = 4;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.insets = new java.awt.Insets(10, 0, 0, 10);
-        JLabel resultado = new JLabel("<html>Resultado: </html>"); //JLabel do resultado
-        resultado.setFont(new Font("Arial", Font.BOLD, 16));
-        panel.add(resultado, gbc);
-        gbc.gridx = 1;
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.insets = new java.awt.Insets(10, 0, 0, 0);
-        textFields[3].setPreferredSize(new Dimension(100, 30));
-        panel.add(textFields[4], gbc);
-
-        //JLabel para exibição de mensagens de erro
-        gbc.gridx = 0;
-        gbc.gridy = 5;
         saidaText = new JLabel();
         saidaText.setPreferredSize(new Dimension(250, 80));
         saidaText.setFont(new Font("Arial", Font.BOLD, 16));
@@ -124,11 +110,12 @@ public class TelaPNIntervalo extends JFrame {
 
                     // Calcula a probabilidade normal
                     double probabilidade = Probabilidade.calculaAcumuladaNormal(b, desvio, media) - Probabilidade.calculaAcumuladaNormal(a, desvio, media);
-                    String textoProb = String.valueOf(probabilidade);
+                    String textoProb = String.format("%.4f", probabilidade * 100) + "%";
                     if(textoProb.contains("-")) {
                        textoProb = textoProb.replace("-", "");
                     } 
-                    textFields[4].setText(textoProb);
+                    saidaText.setText("Resultado: " + textoProb);
+                    saidaText.setForeground(Color.BLACK);
                     
                 } else if (buttonText.equals("Voltar")) {
                     TelaDistNormal telaDistNormal = new TelaDistNormal();
@@ -196,7 +183,6 @@ public class TelaPNIntervalo extends JFrame {
         return true;
     } 
 
-
-}  
+} 
 
 

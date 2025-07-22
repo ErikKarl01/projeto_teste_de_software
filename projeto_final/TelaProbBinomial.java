@@ -22,18 +22,18 @@ public class TelaProbBinomial extends JFrame{
         gbc.gridy = 0;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new java.awt.Insets(0, 0, 0, 10);
-        JLabel textomediLabel = new JLabel("<html>Insira valor de probabilidade: </html>");
-        textomediLabel.setFont(new Font("Arial", Font.BOLD, 16));
-        painel.add(textomediLabel, gbc);
+        JLabel textoprobLabel = new JLabel("<html>Insira valor de probabilidade: </html>");
+        textoprobLabel.setFont(new Font("Arial", Font.BOLD, 16));
+        painel.add(textoprobLabel, gbc);
 
         //TextField de média
         gbc.gridx = 1;
         gbc.gridy = 0;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new java.awt.Insets(10, 0, 0, 0);
-        JTextField variavelXField = new JTextField();
-        variavelXField.setPreferredSize(new Dimension(100, 30));
-        painel.add(variavelXField, gbc);
+        JTextField probField = new JTextField();
+        probField.setPreferredSize(new Dimension(100, 30));
+        painel.add(probField, gbc);
 
         //Label de repetiçoes
         gbc.gridx = 0;
@@ -49,9 +49,9 @@ public class TelaProbBinomial extends JFrame{
         gbc.gridy = 1;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new java.awt.Insets(10, 0, 0, 0);
-        JTextField mediaField = new JTextField();
-        mediaField.setPreferredSize(new Dimension(100, 30));
-        painel.add(mediaField, gbc);
+        JTextField repeticoesField = new JTextField();
+        repeticoesField.setPreferredSize(new Dimension(100, 30));
+        painel.add(repeticoesField, gbc);
 
         //Label de sucessos
         gbc.gridx = 0;
@@ -67,9 +67,9 @@ public class TelaProbBinomial extends JFrame{
         gbc.gridy = 2;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.insets = new java.awt.Insets(10, 0, 0, 0);
-        JTextField desvioPadraoField = new JTextField();
-        desvioPadraoField.setPreferredSize(new Dimension(100, 30));
-        painel.add(desvioPadraoField, gbc);
+        JTextField sucessosField = new JTextField();
+        sucessosField.setPreferredSize(new Dimension(100, 30));
+        painel.add(sucessosField, gbc);
 
         //Label de saída
         gbc.gridx = 0;
@@ -94,19 +94,19 @@ public class TelaProbBinomial extends JFrame{
             Integer sucessos = null;
 
             try {
-                probabilidade = Double.parseDouble(variavelXField.getText().trim());
+                probabilidade = Double.parseDouble(probField.getText().trim());
             } catch (NumberFormatException ex) {
                 saidaTextField.setText("<html> Valor não numérico detectado em probabilidade</html>");
                 return;
             }
             try {
-                repeticoes = Integer.parseInt(desvioPadraoField.getText().trim());
+                repeticoes = Integer.parseInt(repeticoesField.getText().trim());
             } catch (NumberFormatException ex) {
                 saidaTextField.setText("<html>Valor não numérico detectado em repetições</html>");
                 return;
             }
             try {
-                sucessos = Integer.parseInt(mediaField.getText().trim());
+                sucessos = Integer.parseInt(sucessosField.getText().trim());
             } catch (NumberFormatException ex) {
                 saidaTextField.setText("<html>Valor não numérico detectado em sucessos</html>");
                 return;

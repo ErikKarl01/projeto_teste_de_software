@@ -88,16 +88,18 @@ public class TelaEstBasica extends JFrame{
                     return false;
                 }
             } catch (NumberFormatException e) {
+                
+                if (valor.contains(",")) {
+                    campoValor.setText("Erro: vírgula (,) não é um parâmetro válido. Use ponto (.) para separar os números decimais.");
+                    return false;
+                }
                 // verifica se o valor atual foi uma letra ou símbolo
-                if (!valor.matches("-?\\d+([\\.,]\\d+)?")) {
+                else if (!valor.matches("-?\\d+([\\.,]\\d+)?")) {
                     campoValor.setText("Erro: não é permitido letras, símbolos ou operações matemáticas. Digite apenas números");
                     return false;
                 }
                 
-                if (valor.contains(",")) {
-                    campoValor.setText("Erro: " + valor + " não é um parâmetro válido. Use ponto (.) para separar os números decimais.");
-                    return false;
-                }
+                
                 
                 
                 

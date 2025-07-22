@@ -5,10 +5,6 @@ public class EstatisticaInferencial {
 
     // Intervalo de confiança (quando desvio padrão populacional é conhecido)
     public static double[] intervaloConfiancaMediaComDesvioPadrao(double mediaAmostral, double z, double desvioPadrao, int tamanhoAmostra) {
-        if (tamanhoAmostra <= 0 || desvioPadrao <= 0 || z <= 0) {
-            System.out.println("Erro: parâmetros inválidos");
-            return new double[]{-1, -1};
-        }
 
         double margemErro = calcularMargemErro(z, desvioPadrao, tamanhoAmostra);
         if (margemErro < 0) {
@@ -21,10 +17,6 @@ public class EstatisticaInferencial {
 
     // Intervalo de confiança (quando desvio padrão populacional é desconhecido, usa t de Student)
     public static double[] intervaloConfiancaMediaSemDesvioPadrao(double mediaAmostral, double t, double desvioAmostral, int tamanhoAmostra) {
-        if (tamanhoAmostra <= 1 || desvioAmostral <= 0 || t <= 0) {
-            System.out.println("Erro: parâmetros inválidos");
-            return new double[]{-1, -1};
-        }
 
         double erroPadrao = desvioAmostral / Math.sqrt(tamanhoAmostra);
         double margemErro = t * erroPadrao;

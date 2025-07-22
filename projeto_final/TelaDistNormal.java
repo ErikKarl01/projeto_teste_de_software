@@ -42,8 +42,8 @@ public class TelaDistNormal extends JFrame {
                 telaProbDoisPontos.setVisible(true);
             }
             else if(texto.equals("f(x)")) {
-                /*TelaDensidadeNormal telaDensidade = new TelaDensidadeNormal();
-                telaDensidade.setVisible(true);*/ 
+                TelaDensidadeNormal telaDensidade = new TelaDensidadeNormal();
+                telaDensidade.setVisible(true);
             }
             else if(texto.equals("Voltar")) {
                 TelaProbabilidade telaProb = new TelaProbabilidade();

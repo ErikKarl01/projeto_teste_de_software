@@ -5,18 +5,19 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
-
+import java.awt.Color;
 
 
 public class MenuPrincipal extends JFrame{
     public MenuPrincipal(){
         setTitle("Menu Principal");
-        setSize(1000, 800);
+        setSize(1000, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         setLocationRelativeTo(null);
 
         JPanel painel = new JPanel(new GridBagLayout());
+        painel.setBackground(new Color(46, 46, 46));
         GridBagConstraints gbc = new GridBagConstraints();
 
         JButton[] botao = {

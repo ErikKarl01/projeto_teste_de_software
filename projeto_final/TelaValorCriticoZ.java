@@ -163,6 +163,7 @@ public class TelaValorCriticoZ extends JFrame{
         voltar.addActionListener(e -> {
             TelaEstInferencial telaEstInferencial = new TelaEstInferencial();
             telaEstInferencial.setVisible(true);
+            dispose();
         });
         voltar.setPreferredSize(new Dimension(100, 50));
         panel.add(voltar, gbc);

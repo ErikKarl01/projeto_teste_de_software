@@ -2,18 +2,20 @@ package projeto_final;
 
 import java.awt.*;
 import javax.swing.*;
+import java.awt.Color;
 
 public class TelaEstBasica extends JFrame{
     private static JTextField campoValor;
     
     public TelaEstBasica(){
         setTitle("Estatística Básica");
-        setSize(1000, 300);
+        setSize(1000, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
         JPanel painel = new JPanel();
         painel.setLayout(new GridBagLayout());
+        painel.setBackground(new Color(46, 46, 46));
         GridBagConstraints gbc = new GridBagConstraints();
 
         JButton[] botao = {

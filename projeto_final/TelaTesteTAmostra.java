@@ -163,6 +163,7 @@ public class TelaTesteTAmostra extends JFrame{
         voltar.addActionListener(e -> {
             TelaEstInferencial telaEstInferencial = new TelaEstInferencial();
             telaEstInferencial.setVisible(true);
+            dispose();
         });
         panel.add(voltar, gbc);
 

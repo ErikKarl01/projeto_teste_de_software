@@ -15,7 +15,7 @@ public class TelaIntervaloDeConfiança extends JFrame {
         
         JPanel panel = new JPanel();
         panel.setLayout(new GridBagLayout());
-        panel.setBackground(new Color(220, 240, 235));
+        panel.setBackground(new Color(210, 180, 140));
         GridBagConstraints gbc = new GridBagConstraints();
 
         textFields = new JTextField[]{

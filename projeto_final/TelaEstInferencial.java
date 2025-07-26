@@ -7,15 +7,18 @@ import java.awt.Insets;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+import java.awt.Color;
 
 public class TelaEstInferencial extends JFrame {
     public TelaEstInferencial(){
         setTitle("Estatística Inferencial");
-        setSize(1000, 800);
+        setSize(1000, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
         JPanel panel = new JPanel(new GridBagLayout());
+        panel.setBackground(new Color(210, 180, 140));
         GridBagConstraints gbc = new GridBagConstraints();
 
 
@@ -46,8 +49,8 @@ public class TelaEstInferencial extends JFrame {
                     TelaTesteTAmostra telaTesteTAmostra = new TelaTesteTAmostra();  
                     telaTesteTAmostra.setVisible(true);
                 } else if(texString.equals("Teste de proporção simples")){
-                    TelaProbCondicional telaProbCondicional = new TelaProbCondicional();
-                    telaProbCondicional.setVisible(true);
+                    TesteProporcaoSimples telaProporcaoSimples = new TesteProporcaoSimples();
+                    telaProporcaoSimples.setVisible(true);
                 } else if(texString.equals("Voltar")){
                     MenuPrincipal menuPrincipal = new MenuPrincipal();
                     menuPrincipal.setVisible(true);

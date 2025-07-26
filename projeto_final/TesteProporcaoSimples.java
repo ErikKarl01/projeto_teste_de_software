@@ -31,6 +31,7 @@ public class TesteProporcaoSimples extends JFrame{
         gbc.gridx = 1;
         gbc.gridy = 0;
         gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.insets = new java.awt.Insets(0, 0, 10, 0);
         JTextField proposcaoAmostral = new JTextField();
         painel.add(proposcaoAmostral, gbc);
 
@@ -47,7 +48,8 @@ public class TesteProporcaoSimples extends JFrame{
         gbc.gridx = 1;
         gbc.gridy = 1;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        JTextField proporcaoHipotetica = new JTextField();
+        gbc.insets = new java.awt.Insets(0, 0, 10, 0);
+        JTextField proporcaoHipotetica = new JTextField(15);
         painel.add(proporcaoHipotetica, gbc);
 
         // Tamanho da amostra label
@@ -63,14 +65,17 @@ public class TesteProporcaoSimples extends JFrame{
         gbc.gridx = 1;
         gbc.gridy = 2;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        JTextField tamanhoAmostra = new JTextField();
+        gbc.insets = new java.awt.Insets(0, 0, 10, 0);
+        JTextField tamanhoAmostra = new JTextField(15);
         painel.add(tamanhoAmostra, gbc);
 
         // Saída text field
-        gbc.gridx = 1;
+        gbc.gridx = 0;
         gbc.gridy = 3;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        JTextField saidaTextField = new JTextField(15);
+        JLabel saidaTextField = new JLabel("<html>Insira . e não , para valores de ponto flutualne, o sistema diferencia</html>");
+        saidaTextField.setFont(new Font("Arial", Font.BOLD, 16));
+        saidaTextField.setPreferredSize(new Dimension(300, 150));
         painel.add(saidaTextField, gbc);
 
         // botão calcular
@@ -89,28 +94,28 @@ public class TesteProporcaoSimples extends JFrame{
             try {
                 proporcaoAmostraDouble = Double.parseDouble(proposcaoAmostral.getText().trim());
             } catch (NumberFormatException ex) {
-                saidaTextField.setText("ERRO: Valor não numérico detectado");
+                saidaTextField.setText("<html>Valor não numérico detectado em Proporção Amostral</html>");
             }
             try {
                 proposcaoHipoteticaDouble = Double.parseDouble(proporcaoHipotetica.getText().trim());
             } catch (NumberFormatException ex) {
-                saidaTextField.setText("ERRO: Valor não numérico detectado");
+                saidaTextField.setText("<html>Valor não numérico detectado em Proporção Hipotética</html>");
             }
             try {
                 tamanhoAmostraInteger = Integer.parseInt(tamanhoAmostra.getText().trim());
             } catch (NumberFormatException ex) {
-                saidaTextField.setText("ERRO: Valor não numérico detectado");
+                saidaTextField.setText("<html>Valor não numérico detectado em Tamanho da Amostra</html>");
             }
 
             if (proporcaoAmostraDouble != null && proposcaoHipoteticaDouble !=  null && tamanhoAmostraInteger != null) {
                 if (proporcaoAmostraDouble < 0 || proporcaoAmostraDouble > 1) {
-                    saidaTextField.setText("ERRO: Proporção amostral deve estar entre 0 e 1");
+                    saidaTextField.setText("<html>ERRO: Proporção amostral deve estar entre 0 e 1</html>");
                 } else if (proposcaoHipoteticaDouble < 0 || proposcaoHipoteticaDouble > 1) {
-                    saidaTextField.setText("ERRO: Proposição hipotética deve estar entre 0 e 1");
+                    saidaTextField.setText("<html>ERRO: Proposição hipotética deve estar entre 0 e 1</html>");
                 } else if (tamanhoAmostraInteger <= 0 || tamanhoAmostraInteger > 1000000000) {
-                    saidaTextField.setText("ERRO: Tamanho da amostra deve ser maior que zero e menor que 1.000.000.000");
+                    saidaTextField.setText("<html>ERRO: Tamanho da amostra deve ser maior que zero e menor que 1.000.000.000</html>");
                 } else {
-                    saidaTextField.setText("Resultado: " + EstatisticaInferencial.testeProporcaoSimples(proporcaoAmostraDouble, proposcaoHipoteticaDouble, tamanhoAmostraInteger));
+                    saidaTextField.setText("<html>Resultado: " + EstatisticaInferencial.testeProporcaoSimples(proporcaoAmostraDouble, proposcaoHipoteticaDouble, tamanhoAmostraInteger) + "</html>");
                 }
             }
         });
@@ -125,8 +130,9 @@ public class TesteProporcaoSimples extends JFrame{
         voltarButton.setText("Voltar");
         voltarButton.setPreferredSize(new Dimension(100, 50));
         voltarButton.addActionListener(e -> {
-            TelaProbabilidade telaProbabilidade = new TelaProbabilidade();
-            telaProbabilidade.setVisible(true);
+            TelaEstInferencial telaEstInferencial = new TelaEstInferencial();
+            telaEstInferencial.setVisible(true);
+            dispose();
         });
         painel.add(voltarButton, gbc);
 

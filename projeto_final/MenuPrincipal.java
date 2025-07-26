@@ -52,11 +52,4 @@ public class MenuPrincipal extends JFrame{
         }
         add(painel);
     }
-
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            MenuPrincipal menu = new MenuPrincipal();
-            menu.setVisible(true);
-        });
-    }
 }

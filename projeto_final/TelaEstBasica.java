@@ -97,13 +97,7 @@ public class TelaEstBasica extends JFrame{
                 else if (!valor.matches("-?\\d+([\\.,]\\d+)?")) {
                     campoValor.setText("Erro: não é permitido letras, símbolos ou operações matemáticas. Digite apenas números");
                     return false;
-                }
-                
-                
-                
-                
-                
-                
+                }   
 
             }
         }

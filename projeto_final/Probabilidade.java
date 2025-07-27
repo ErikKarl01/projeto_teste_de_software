@@ -1,7 +1,7 @@
 package projeto_final;
 
 import org.apache.commons.math3.special.Erf;
-
+import java.math.BigInteger;
 public class Probabilidade {
 
     public static double calcularProbabilidadeSimples(double eventosFavoraveis, double eventosPossiveis){
@@ -17,32 +17,33 @@ public class Probabilidade {
         return probabilidade_aeb/probabilidade_b;
     }
 
-    public static int fatorial(int n) {
+    public static BigInteger fatorial(int n) {
         if(n < 0) {
             System.out.println("Erro: número negativo");
-            return -1;
+            return BigInteger.valueOf(-1);
         }
 
         if(n == 0) {
-            return 1;
+            return BigInteger.ONE;
         } else{
-            return n * fatorial(n - 1);
+            return BigInteger.valueOf(n).multiply(fatorial(n - 1));
         }
     }
 
-    public static int qtd_combinacoes(int n, int k) {
+
+    public static BigInteger qtd_combinacoes(int n, int k) {
         if(n == k) {
-            return 1;
+            return BigInteger.ONE;
         } if(n < k) {
         System.out.println("Erro: nao foi possivel realizar o calculo porque o primeiro parametro e menor do que o segundo");
-            return -1; 
+            return BigInteger.valueOf(-1);
         }
 
-        int n_fatorial = fatorial(n);
-        int k_fatorial = fatorial(k);
-        int d_fatorial = fatorial(n - k);
+        BigInteger n_fatorial = fatorial(n);
+        BigInteger k_fatorial = fatorial(k);
+        BigInteger d_fatorial = fatorial(n - k);
 
-        return (n_fatorial)/((k_fatorial)*(d_fatorial));
+        return (n_fatorial).divide((k_fatorial).multiply(d_fatorial));
     }
 
     public static double calcularProbabilidadeBinomial(double probabilidade, int repeticoes, int sucessos){
@@ -51,9 +52,13 @@ public class Probabilidade {
             return -1;
         }
 
-        int coeficiente_binomial = qtd_combinacoes(repeticoes, sucessos);
+        BigInteger coeficiente_binomial = qtd_combinacoes(repeticoes, sucessos);
 
-        return coeficiente_binomial*Math.pow(probabilidade, sucessos)*Math.pow(1 - probabilidade, repeticoes - sucessos);
+        double resultado = coeficiente_binomial.doubleValue() *
+                Math.pow(probabilidade, sucessos) *
+                Math.pow(1 - probabilidade, repeticoes - sucessos);
+
+        return resultado;
     }
 
     public static double calcularDensidadeNormal(double x, double desvioPadrao, double media){

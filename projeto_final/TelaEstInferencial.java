@@ -39,8 +39,8 @@ public class TelaEstInferencial extends JFrame {
             String texString = botao[i].getText();
             botao[i].addActionListener(e -> {
                 if(texString.equals("Interv. de confiança (média)")){
-                    TelaIntervaloDeConfiança telaIntervaloDeConfiança = new TelaIntervaloDeConfiança();
-                    telaIntervaloDeConfiança.setVisible(true);
+                    TelaIntervaloDeConfianca telaIntervaloDeConfianca = new TelaIntervaloDeConfianca();
+                    telaIntervaloDeConfianca.setVisible(true);
                 } else if(texString.equals("Valor z de uma população")){
                     TelaValorCriticoZ telaValorCriticoZ = new TelaValorCriticoZ();
                     telaValorCriticoZ.setVisible(true);

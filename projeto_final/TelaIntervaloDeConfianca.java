@@ -3,11 +3,11 @@ import java.awt.*;
 import javax.swing.*;
 
 
-public class TelaIntervaloDeConfiança extends JFrame {
+public class TelaIntervaloDeConfianca extends JFrame {
     private static JTextField[] textFields;
     private static JLabel saidaText;
 
-    public TelaIntervaloDeConfiança() {
+    public TelaIntervaloDeConfianca() {
         setTitle("Cálculo de Intervalo de Confiança");
         setSize(1000, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

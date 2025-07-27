@@ -23,7 +23,7 @@ public class TelaEstInferencial extends JFrame {
 
 
         JButton[] botao = {
-            new JButton("Intervalo de confiança da média de uma população"),
+            new JButton("Interv. de confiança (média)"),
             new JButton("Valor z de uma população"),
             new JButton("Teste T de uma amostra"),
             new JButton("Teste de proporção simples"),
@@ -39,7 +39,7 @@ public class TelaEstInferencial extends JFrame {
 
             String texString = botao[i].getText();
             botao[i].addActionListener(e -> {
-                if(texString.equals("Intervalo de confiança da média de uma população")){
+                if(texString.equals("Interv. de confiança (média)")){
                     TelaIntervaloDeConfiança telaIntervaloDeConfiança = new TelaIntervaloDeConfiança();
                     telaIntervaloDeConfiança.setVisible(true);
                 } else if(texString.equals("Valor z de uma população")){

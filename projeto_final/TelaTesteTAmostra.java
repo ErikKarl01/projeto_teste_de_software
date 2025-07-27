@@ -136,7 +136,7 @@ public class TelaTesteTAmostra extends JFrame{
             try {
                 tamanhoAmosInteger = Integer.parseInt(tamanhoAmostra.getText().trim());
             } catch (NumberFormatException exe) {
-                saida.setText("<html>ERRO: Valor não numérico detectado em tamanho da amostra</html>");
+                saida.setText("<html>ERRO: Valor não numérico detectado em tamanho da amostra ou tentativa de ponto flutuante</html>");
                 return;
             }
 

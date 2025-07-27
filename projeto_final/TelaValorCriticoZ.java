@@ -118,35 +118,35 @@ public class TelaValorCriticoZ extends JFrame{
             try {
                 mediaAmostraDouble = Double.parseDouble(mediaAmostra.getText().trim());
             } catch (NumberFormatException exe) {
-                saida.setText("<html>Valor não numérico detectado em média amostral</html>");
+                saida.setText("<html>Erro: Valor não numérico ou nulo detectado em média amostral</html>");
                 return;
             }
             try {
                 mediaHipoteticaDouble = Double.parseDouble(mediaHipotese.getText().trim());
             } catch (NumberFormatException exe) {
-                saida.setText("<html>Valor não autorizado em media hipotética</html>");
+                saida.setText("<html>Erro: Valor não numérico ou nulo detectado em média hipotética</html>");
                 return;
             }
             try {
                 desvioPadrDouble = Double.parseDouble(desvioPadrao.getText().trim());
             } catch (NumberFormatException exe) {
-                saida.setText("<html>Valor não autorizado em desvio padrão</html>");
+                saida.setText("<html>Erro: Valor não numérico ou nulo detectado em desvio padrão</html>");
                 return;
             }
             try {
                 tamanhoAmostraInteger = Integer.parseInt(tamanhoAmostra.getText().trim());
             } catch (NumberFormatException exe) {
-                saida.setText("<html>Valor não autorizado em tamanho da amostra</html>");
+                saida.setText("<html>Erro: Valor não numérico ou nulo detectado em tamanho da amostra ou tentativa de valor em ponto flutuante</html>");
                 return;
             }
 
             if (mediaAmostraDouble != null && tamanhoAmostraInteger != null && desvioPadrDouble != null && mediaHipoteticaDouble != null) {
                 if (mediaAmostraDouble < -1000000000 || mediaAmostraDouble > 1000000000 || mediaHipoteticaDouble < -1000000000 || mediaHipoteticaDouble > 1000000000) {
-                    saida.setText("<html>Valor da média hipotética ou valor da média amostral fora do intervalo permitido (intervalo de -1000000000 a 1000000000)</html>");
+                    saida.setText("<html>Erro: Valor da média hipotética ou valor da média amostral fora do intervalo permitido (intervalo de -1000000000 a 1000000000)</html>");
                 } else if(desvioPadrDouble < 0 || desvioPadrDouble > 1000000000){
-                    saida.setText("<html>Desvio padrão não pode ser menor que 0 e menor ou igual a 1000000000</html>");
+                    saida.setText("<html>Erro: Desvio padrão não pode ser menor que 0 ou maior que 1000000000</html>");
                 } else if(tamanhoAmostraInteger<=0 || tamanhoAmostraInteger > 1000000000){
-                    saida.setText("<html>O tamanho da amostra deve ser maior que zero e menor ou igual a 1000000000</html>");
+                    saida.setText("<html>Erro: O tamanho da amostra deve ser maior que zero e menor ou igual a 1000000000</html>");
                 } else{
                     saida.setText("<html>Resultado: " + EstatisticaInferencial.testeZ(mediaAmostraDouble, mediaHipoteticaDouble, desvioPadrDouble, tamanhoAmostraInteger) + "</html>");
                 }

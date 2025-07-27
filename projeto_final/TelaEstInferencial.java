@@ -7,7 +7,6 @@ import java.awt.Insets;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import java.awt.Color;
 
 public class TelaEstInferencial extends JFrame {

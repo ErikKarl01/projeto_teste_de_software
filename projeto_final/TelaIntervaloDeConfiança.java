@@ -106,7 +106,7 @@ public class TelaIntervaloDeConfiança extends JFrame {
                     double media = Double.parseDouble(textFields[0].getText().trim());
                     double z = Double.parseDouble(textFields[1].getText().trim());
                     double dp = Double.parseDouble(textFields[2].getText().trim());
-                    int tamanho = (int) Double.parseDouble(textFields[3].getText().trim());
+                    int tamanho =  Integer.parseInt(textFields[3].getText().trim());
 
                     
                     double[] intervalo = EstatisticaInferencial.intervaloConfiancaMediaComDesvioPadrao(media, z, dp, tamanho);
@@ -128,7 +128,7 @@ public class TelaIntervaloDeConfiança extends JFrame {
                     double media = Double.parseDouble(textFields[0].getText().trim());
                     double t = Double.parseDouble(textFields[1].getText().trim());
                     double dp = Double.parseDouble(textFields[2].getText().trim());
-                    int tamanho = (int) Double.parseDouble(textFields[3].getText().trim());
+                    int tamanho = Integer.parseInt(textFields[3].getText().trim());
 
                     if (tamanho <= 1) {
                         saidaText.setText("<html>ERRO: Tamanho da amostra deve ser maior que 1</html>");
@@ -160,6 +160,7 @@ public class TelaIntervaloDeConfiança extends JFrame {
         };
 
        for(int i = 0; i < campos.length; i++) {
+            double valor3 = Double.parseDouble(campos[3].trim());
             if (campos[i].isEmpty()) {
                 saidaText.setText("<html>ERRO: Campo vazio detectado</html>");
                 saidaText.setForeground(Color.RED);
@@ -201,6 +202,21 @@ public class TelaIntervaloDeConfiança extends JFrame {
                 }
 
                 
+            }
+            if(valor3 % 1 != 0) {
+                saidaText.setText("<html>ERRO: Tamanho da amostra deve ser um número inteiro</html>");
+                saidaText.setForeground(Color.RED);
+                textFields[3].setText("");
+                return false;
+
+            }
+
+            if(campos[3].matches(".*[a-zA-Z]+.*")) {
+                saidaText.setText("<html>ERRO: Tamanho da amostra deve ser numérico</html>");
+                saidaText.setForeground(Color.RED);
+                textFields[3].setText("");
+                return false;
+
             }
         }
 

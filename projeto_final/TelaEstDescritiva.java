@@ -73,7 +73,7 @@ public class TelaEstDescritiva extends JFrame {
 
                 botao.addActionListener(e -> {
                     switch (textoBotao) {
-                        case "Média" -> resultado.setText(String.valueOf(entradas.media_simples()));
+                        case "Média" -> resultado.setText(String.format("%.5f", entradas.media_simples()));
                         case "Variância" -> resultado.setText(String.format("%.2f", entradas.calculaVarianciaAmostral()));
                         case "Moda" -> resultado.setText(String.valueOf(entradas.calcularModa()));
                         case "Desvio Padrão" -> resultado.setText(String.format("%.2f", entradas.calculaDesvioPadrão()));

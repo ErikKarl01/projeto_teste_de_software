@@ -132,7 +132,7 @@ public class TelaIntervaloDeConfianca extends JFrame {
 
                     if (tamanho <= 1) {
                         saidaText.setText("<html>ERRO: Tamanho da amostra deve ser maior que 1</html>");
-                        saidaText.setForeground(Color.RED);
+                        saidaText.setForeground(Color.BLACK);
                         return;
                     }
 
@@ -160,63 +160,51 @@ public class TelaIntervaloDeConfianca extends JFrame {
         };
 
        for(int i = 0; i < campos.length; i++) {
-            double valor3 = Double.parseDouble(campos[3].trim());
             if (campos[i].isEmpty()) {
                 saidaText.setText("<html>ERRO: Campo vazio detectado</html>");
-                saidaText.setForeground(Color.RED);
+                saidaText.setForeground(Color.BLACK);
                 return false;
             }
             try {
                 double valor = Double.parseDouble(campos[i]);
-                if (valor <= 0) {
-                    if(i == 0) {
-                        continue; // média pode ser zero ou negativa
-                    } else {
-                        saidaText.setText("<html>ERRO: Valor deve ser positivo e maior do que 0 (exceto média)</html>");
-                        saidaText.setForeground(Color.RED);
-                        return false;   
-                    }
-                    
+                // média (índice 0) pode ser qualquer número
+                if (i != 0 && valor <= 0) {
+                    saidaText.setText("<html>ERRO: Valor deve ser positivo e maior do que 0 (exceto média)</html>");
+                    saidaText.setForeground(Color.BLACK);
+                    return false;
+                }
+
+                // tamanho da amostra deve ser inteiro
+                if (i == 3 && valor % 1 != 0) {
+                    saidaText.setText("<html>ERRO: Tamanho da amostra deve ser um número inteiro</html>");
+                    saidaText.setForeground(Color.BLACK);
+                    textFields[3].setText("");
+                    return false;
                 }
 
             } catch (Exception e) {
                 if(campos[i].contains(",")) {
                     saidaText.setText("<html>ERRO: Digite os números separados por (.)</html>");
-                    saidaText.setForeground(Color.RED);
+                    saidaText.setForeground(Color.BLACK);
                     textFields[i].setText("");
                     return false;
                 }
 
                 if(campos[i].matches(".*\\s+.*")) {
                     saidaText.setText("<html>ERRO: espaços em branco não são permitidos</html>");
-                    saidaText.setForeground(Color.RED);
+                    saidaText.setForeground(Color.BLACK);
                     textFields[i].setText("");
                     return false;
                 }
                 
                 if(!campos[i].matches("-?\\d+(\\.\\d+)?")) {
                     saidaText.setText("<html>ERRO: letras, símbolos ou operações são inválidos</html>");
-                    saidaText.setForeground(Color.RED);
+                    saidaText.setForeground(Color.BLACK);
                     textFields[i].setText("");
                     return false;
                 }
 
                 
-            }
-            if(valor3 % 1 != 0) {
-                saidaText.setText("<html>ERRO: Tamanho da amostra deve ser um número inteiro</html>");
-                saidaText.setForeground(Color.RED);
-                textFields[3].setText("");
-                return false;
-
-            }
-
-            if(campos[3].matches(".*[a-zA-Z]+.*")) {
-                saidaText.setText("<html>ERRO: Tamanho da amostra deve ser numérico</html>");
-                saidaText.setForeground(Color.RED);
-                textFields[3].setText("");
-                return false;
-
             }
         }
 

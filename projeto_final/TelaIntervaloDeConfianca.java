@@ -94,7 +94,7 @@ public class TelaIntervaloDeConfianca extends JFrame {
             gbc.insets = new Insets(10, 0, 0, 0); // Espaçamento entre os botões
             buttons[i].setPreferredSize(new Dimension(100, 30));
             panel.add(buttons[i], gbc);
-            String buttonText = buttons[i].getText();
+            final String buttonText = buttons[i].getText();
             buttons[i].addActionListener(e -> {
                 if (buttonText.equals("Calcular Intervalo com z")) {
                     
